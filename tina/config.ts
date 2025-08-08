@@ -17,13 +17,13 @@ export default defineConfig({
 
   build: {
     outputFolder: "admin",
-    publicFolder: "public",
+    publicFolder: "public"
   },
   media: {
     tina: {
       mediaRoot: "",
-      publicFolder: "public",
-    },
+      publicFolder: "public"
+    }
   },
   // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/schema/
   schema: {
@@ -36,11 +36,11 @@ export default defineConfig({
         ui: {
           allowedActions: {
             create: false,
-            delete: false,
-          },
+            delete: false
+          }
         },
         match: {
-          include: "home",
+          include: "home"
         },
         fields: [
           {
@@ -52,51 +52,51 @@ export default defineConfig({
                 type: "string",
                 name: "name",
                 label: "Nome",
-                required: true,
+                required: true
               },
               {
                 type: "string",
                 name: "surname",
                 label: "Cognome",
-                required: true,
+                required: true
               },
               {
                 type: "string",
                 name: "title",
                 label: "Titolo Professionale",
-                required: true,
+                required: true
               },
               {
                 type: "string",
                 name: "subtitle",
                 label: "Sottotitolo",
-                required: true,
+                required: true
               },
               {
                 type: "rich-text",
                 name: "description",
                 label: "Descrizione",
-                required: true,
+                required: true
               },
               {
                 type: "string",
                 name: "ctaPrimary",
                 label: "Testo Bottone Primario",
-                required: true,
+                required: true
               },
               {
                 type: "string",
                 name: "ctaSecondary",
                 label: "Testo Bottone Secondario",
-                required: true,
-              },
-              {
-                type: "string",
-                name: "scrollText",
-                label: "Testo Scroll",
-                required: true,
-              },
-            ],
+                required: true
+              }
+              // {
+              //   type: "string",
+              //   name: "scrollText",
+              //   label: "Testo Scroll",
+              //   required: true,
+              // },
+            ]
           },
           {
             type: "object",
@@ -107,20 +107,20 @@ export default defineConfig({
                 type: "string",
                 name: "title",
                 label: "Titolo",
-                required: true,
+                required: true
               },
               {
                 type: "rich-text",
                 name: "description",
                 label: "Descrizione",
-                required: true,
+                required: true
               },
               {
                 type: "image",
                 name: "image",
-                label: "Immagine Profilo",
-              },
-            ],
+                label: "Immagine Profilo"
+              }
+            ]
           },
           {
             type: "object",
@@ -131,12 +131,12 @@ export default defineConfig({
                 type: "string",
                 name: "title",
                 label: "Titolo",
-                required: true,
+                required: true
               },
               {
                 type: "string",
                 name: "subtitle",
-                label: "Sottotitolo",
+                label: "Sottotitolo"
               },
               {
                 type: "object",
@@ -148,22 +148,22 @@ export default defineConfig({
                     type: "string",
                     name: "title",
                     label: "Titolo Servizio",
-                    required: true,
+                    required: true
                   },
                   {
                     type: "string",
                     name: "description",
                     label: "Descrizione",
-                    required: true,
+                    required: true
                   },
                   {
                     type: "image",
                     name: "icon",
-                    label: "Icona/Immagine",
-                  },
-                ],
-              },
-            ],
+                    label: "Icona/Immagine"
+                  }
+                ]
+              }
+            ]
           },
           {
             type: "object",
@@ -174,12 +174,12 @@ export default defineConfig({
                 type: "string",
                 name: "title",
                 label: "Titolo",
-                required: true,
+                required: true
               },
               {
                 type: "string",
                 name: "subtitle",
-                label: "Sottotitolo",
+                label: "Sottotitolo"
               },
               {
                 type: "object",
@@ -191,32 +191,32 @@ export default defineConfig({
                     type: "string",
                     name: "title",
                     label: "Titolo Progetto",
-                    required: true,
+                    required: true
                   },
                   {
                     type: "string",
                     name: "description",
-                    label: "Descrizione",
+                    label: "Descrizione"
                   },
                   {
                     type: "image",
                     name: "image",
                     label: "Immagine",
-                    required: true,
+                    required: true
                   },
                   {
                     type: "string",
                     name: "location",
-                    label: "Luogo",
+                    label: "Luogo"
                   },
                   {
                     type: "string",
                     name: "year",
-                    label: "Anno",
-                  },
-                ],
-              },
-            ],
+                    label: "Anno"
+                  }
+                ]
+              }
+            ]
           },
           {
             type: "object",
@@ -227,32 +227,32 @@ export default defineConfig({
                 type: "string",
                 name: "title",
                 label: "Titolo",
-                required: true,
+                required: true
               },
               {
                 type: "string",
                 name: "address",
                 label: "Indirizzo",
-                required: true,
+                required: true
               },
               {
                 type: "string",
                 name: "phone",
-                label: "Telefono",
+                label: "Telefono"
               },
               {
                 type: "string",
                 name: "email",
-                label: "Email",
+                label: "Email"
               },
               {
                 type: "string",
                 name: "description",
-                label: "Descrizione",
-              },
-            ],
-          },
-        ],
+                label: "Descrizione"
+              }
+            ]
+          }
+        ]
       },
       {
         name: "post",
@@ -264,19 +264,19 @@ export default defineConfig({
             name: "title",
             label: "Title",
             isTitle: true,
-            required: true,
+            required: true
           },
           {
             type: "rich-text",
             name: "body",
             label: "Body",
-            isBody: true,
-          },
+            isBody: true
+          }
         ],
         ui: {
-          router: ({ document }) => `/blog/${document._sys.filename}`,
-        },
-      },
-    ],
-  },
+          router: ({ document }) => `/blog/${document._sys.filename}`
+        }
+      }
+    ]
+  }
 });
