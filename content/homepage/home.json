@@ -1,0 +1,112 @@
+{
+  "hero": {
+    "name": "DANILO",
+    "surname": "FULMINIS",
+    "title": "PERITO INDUSTRIALE",
+    "subtitle": "SPECIALISTA IN SISTEMI FOTOVOLTAICI",
+    "description": {
+      "type": "root",
+      "children": [
+        {
+          "type": "p",
+          "children": [
+            {
+              "type": "text",
+              "text": "Progettazione e installazione di "
+            },
+            {
+              "type": "text",
+              "text": "soluzioni energetiche innovative",
+              "bold": true
+            },
+            {
+              "type": "text",
+              "text": " per privati e aziende."
+            }
+          ]
+        }
+      ]
+    },
+    "ctaPrimary": "SCOPRI I MIEI SERVIZI",
+    "ctaSecondary": "CONTATTAMI",
+    "scrollText": "SCOPRI DI PIÙ"
+  },
+  "chiSono": {
+    "title": "Chi Sono",
+    "description": {
+      "type": "root",
+      "children": [
+        {
+          "type": "p",
+          "children": [
+            {
+              "type": "text",
+              "text": "Sono Danilo Fulminis, perito industriale specializzato nella progettazione e installazione di sistemi fotovoltaici. Con anni di esperienza nel settore delle energie rinnovabili, offro soluzioni personalizzate per massimizzare l'efficienza energetica di abitazioni e aziende."
+            }
+          ]
+        }
+      ]
+    },
+    "image": "/images/danilo-profile.jpg"
+  },
+  "servizi": {
+    "title": "I Miei Servizi",
+    "subtitle": "Soluzioni complete per l'energia solare",
+    "services": [
+      {
+        "title": "Progettazione Impianti",
+        "description": "Progettazione tecnica completa di sistemi fotovoltaici su misura per le tue esigenze energetiche.",
+        "icon": "/images/design-icon.svg"
+      },
+      {
+        "title": "Installazione",
+        "description": "Installazione professionale di pannelli solari e sistemi di accumulo con garanzia di qualità.",
+        "icon": "/images/install-icon.svg"
+      },
+      {
+        "title": "Manutenzione",
+        "description": "Servizi di manutenzione preventiva e correttiva per garantire massime performance nel tempo.",
+        "icon": "/images/maintenance-icon.svg"
+      },
+      {
+        "title": "Consulenza Energetica",
+        "description": "Analisi dei consumi e consulenza per l'ottimizzazione dell'efficienza energetica.",
+        "icon": "/images/consulting-icon.svg"
+      }
+    ]
+  },
+  "gallery": {
+    "title": "I Miei Progetti",
+    "subtitle": "Alcuni dei lavori realizzati",
+    "projects": [
+      {
+        "title": "Impianto Residenziale 6kW",
+        "description": "Sistema fotovoltaico con accumulo per abitazione privata",
+        "image": "/images/project-1.jpg",
+        "location": "Milano",
+        "year": "2024"
+      },
+      {
+        "title": "Impianto Industriale 50kW",
+        "description": "Grande impianto per azienda manifatturiera",
+        "image": "/images/project-2.jpg",
+        "location": "Bergamo",
+        "year": "2023"
+      },
+      {
+        "title": "Impianto Agricolo 20kW",
+        "description": "Sistema fotovoltaico per azienda agricola",
+        "image": "/images/project-3.jpg",
+        "location": "Brescia",
+        "year": "2024"
+      }
+    ]
+  },
+  "doveSono": {
+    "title": "Dove Sono",
+    "address": "Via Roma 123, 20100 Milano (MI)",
+    "phone": "+39 123 456 7890",
+    "email": "info@studiofulminis.it",
+    "description": "Il mio studio si trova nel cuore di Milano, facilmente raggiungibile con i mezzi pubblici. Ricevo su appuntamento per consulenze personalizzate."
+  }
+}
