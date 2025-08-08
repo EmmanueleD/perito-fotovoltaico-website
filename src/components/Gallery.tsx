@@ -4,7 +4,25 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 
-export default function Gallery() {
+interface GalleryProject {
+  title: string
+  description?: string
+  image: string
+  location?: string
+  year?: string
+}
+
+interface GalleryData {
+  title: string
+  subtitle?: string
+  projects?: GalleryProject[]
+}
+
+interface GalleryProps {
+  data?: GalleryData
+}
+
+export default function Gallery({ data }: GalleryProps) {
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
 
   // Placeholder images - questi saranno gestiti tramite TinaCMS
@@ -85,10 +103,10 @@ export default function Gallery() {
           className="text-center mb-16"
         >
           <h2 className="text-5xl md:text-6xl font-bold text-blue-800 mb-6 text-center uppercase tracking-wider drop-shadow-lg">
-            I MIEI <span className="text-green-500">PROGETTI</span>
+{data?.title ? data.title.toUpperCase().split(' ').map((word, index) => index <= 1 ? word + ' ' : <span key={index} className="text-green-500">{word}</span>) : <>I MIEI <span className="text-green-500">PROGETTI</span></>}
           </h2>
           <p className="text-xl text-gray-600 text-center max-w-3xl mx-auto font-medium">
-            Scopri alcuni dei progetti fotovoltaici che ho realizzato per privati e aziende.
+{data?.subtitle || "Scopri alcuni dei progetti fotovoltaici che ho realizzato per privati e aziende."}
           </p>
         </motion.div>
 

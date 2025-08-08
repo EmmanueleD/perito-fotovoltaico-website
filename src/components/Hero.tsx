@@ -1,13 +1,30 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
-import { ArrowDown, Sun, Zap } from 'lucide-react'
+import { motion } from "framer-motion";
+import { ArrowDown, Sun, Zap } from "lucide-react";
+import TinaRichText from "./TinaRichText";
 
-export default function Hero() {
+interface HeroData {
+  name: string;
+  surname: string;
+  title: string;
+  subtitle: string;
+  description: any;
+  ctaPrimary: string;
+  ctaSecondary: string;
+  scrollText: string;
+}
+
+interface HeroProps {
+  data?: HeroData;
+}
+
+export default function Hero({ data }: HeroProps) {
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 flex items-center justify-center px-4 overflow-hidden">
-
-
+    <section
+      id="hero"
+      className="relative min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 flex items-center justify-center px-4 overflow-hidden"
+    >
       <div className="container mx-auto px-6 text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -27,22 +44,44 @@ export default function Hero() {
 
           {/* Main heading */}
           <h1 className="text-6xl md:text-8xl font-bold text-gray-800 mb-6 text-center uppercase tracking-wider">
-            DANILO <span className="text-blue-800">FULMINIS</span>
+            {data?.name || "DANILO"}{" "}
+            <span className="text-blue-800">{data?.surname || "FULMINIS"}</span>
           </h1>
 
           {/* Subtitle */}
           <p className="text-2xl md:text-3xl text-blue-800 mb-4 text-center font-bold uppercase tracking-wide">
-            PERITO INDUSTRIALE
+            {data?.title || "PERITO INDUSTRIALE"}
           </p>
           <p className="text-xl md:text-2xl text-gray-600 mb-12 text-center font-semibold uppercase tracking-wide">
-            SPECIALISTA IN SISTEMI FOTOVOLTAICI
+            {data?.subtitle || "SPECIALISTA IN SISTEMI FOTOVOLTAICI"}
           </p>
 
           {/* Description */}
-          <p className="text-xl md:text-2xl text-gray-700 mb-12 text-center font-medium leading-relaxed max-w-4xl mx-auto">
-            Progettazione e installazione di 
-            <span className="text-green-600 font-bold">soluzioni energetiche innovative</span> per privati e aziende.
-          </p>
+          <div className="text-lg md:text-xl text-gray-700 mb-12 text-center max-w-4xl mx-auto leading-relaxed">
+            {data?.description ? (
+              <TinaRichText
+                content={data.description}
+                className="text-center"
+              />
+            ) : (
+              <p>
+                Con oltre{" "}
+                <span className="font-semibold text-blue-800">
+                  15 anni di esperienza
+                </span>{" "}
+                nel settore energetico, mi dedico alla{" "}
+                <span className="font-semibold text-blue-800">
+                  progettazione e installazione
+                </span>{" "}
+                di sistemi fotovoltaici all&apos;avanguardia. La mia missione è
+                rendere l&apos;
+                <span className="font-semibold text-green-600">
+                  energia sostenibile
+                </span>
+                accessibile a tutti.
+              </p>
+            )}
+          </div>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -51,20 +90,20 @@ export default function Hero() {
               whileTap={{ scale: 0.95 }}
               className="bg-blue-800 hover:bg-blue-900 text-white px-10 py-5 text-xl font-bold transition-all shadow-lg"
             >
-              SCOPRI I MIEI SERVIZI
+              {data?.ctaPrimary || "SCOPRI I MIEI SERVIZI"}
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="border-2 border-gray-600 text-gray-600 hover:bg-gray-600 hover:text-white px-10 py-5 text-xl font-bold transition-all shadow-lg"
             >
-              CONTATTAMI
+              {data?.ctaSecondary || "CONTATTAMI"}
             </motion.button>
           </div>
         </motion.div>
 
         {/* Scroll indicator */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 0.8 }}
@@ -74,8 +113,8 @@ export default function Hero() {
             <span className="text-lg mb-2 font-bold">SCOPRI DI PIÙ</span>
             <ArrowDown className="w-8 h-8 animate-bounce" />
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
-  )
+  );
 }

@@ -3,7 +3,23 @@
 import { motion } from 'framer-motion'
 import { Sun, Settings, BarChart3, Shield, Wrench, Calculator } from 'lucide-react'
 
-export default function Servizi() {
+interface Service {
+  title: string
+  description: string
+  icon?: string | null
+}
+
+interface ServiziData {
+  title: string
+  subtitle?: string | null
+  services?: Service[] | null
+}
+
+interface ServiziProps {
+  data?: ServiziData
+}
+
+export default function Servizi({ data }: ServiziProps) {
   const services = [
     {
       icon: Calculator,
@@ -44,7 +60,7 @@ export default function Servizi() {
   ]
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section id="servizi" className="py-20 bg-gray-50">
       <div className="container mx-auto px-6">
         {/* Header */}
         <motion.div
@@ -55,10 +71,10 @@ export default function Servizi() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6 text-center">
-            I Miei <span className="text-blue-800">Servizi</span>
+{data?.title ? data.title.split(' ').map((word, index) => index <= 1 ? word + ' ' : <span key={index} className="text-blue-800">{word}</span>) : <>I Miei <span className="text-blue-800">Servizi</span></>}
           </h2>
           <p className="text-lg text-gray-600 text-center max-w-3xl mx-auto">
-            Soluzioni complete per l'energia sostenibile
+{data?.subtitle || "Soluzioni complete per l'energia sostenibile"}
           </p>
         </motion.div>
 

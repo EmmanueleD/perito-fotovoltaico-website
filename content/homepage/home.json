@@ -1,53 +1,18 @@
 {
   "hero": {
     "name": "DANILO",
-    "surname": "FULMINIS",
+    "surname": "FULMINISzzz",
     "title": "PERITO INDUSTRIALE",
     "subtitle": "SPECIALISTA IN SISTEMI FOTOVOLTAICI",
-    "description": {
-      "type": "root",
-      "children": [
-        {
-          "type": "p",
-          "children": [
-            {
-              "type": "text",
-              "text": "Progettazione e installazione di "
-            },
-            {
-              "type": "text",
-              "text": "soluzioni energetiche innovative",
-              "bold": true
-            },
-            {
-              "type": "text",
-              "text": " per privati e aziende."
-            }
-          ]
-        }
-      ]
-    },
+    "description": "ciao io sono un testo normale\n\n**ciao io sono un testo in grassetto**\n\n***ciao io sono un testo in grassetto e corsivo***\n",
     "ctaPrimary": "SCOPRI I MIEI SERVIZI",
     "ctaSecondary": "CONTATTAMI",
     "scrollText": "SCOPRI DI PIÙ"
   },
   "chiSono": {
     "title": "Chi Sono",
-    "description": {
-      "type": "root",
-      "children": [
-        {
-          "type": "p",
-          "children": [
-            {
-              "type": "text",
-              "text": "Sono Danilo Fulminis, perito industriale specializzato nella progettazione e installazione di sistemi fotovoltaici. Con anni di esperienza nel settore delle energie rinnovabili, offro soluzioni personalizzate per massimizzare l'efficienza energetica di abitazioni e aziende."
-            }
-          ]
-        }
-      ]
-    },
-    "image": "/images/danilo-profile.jpg"
+    "description": "\\[object Object]\n",
+    "image": "/images/danilo-fulminis.jpg"
   },
   "servizi": {
     "title": "I Miei Servizi",

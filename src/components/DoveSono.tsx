@@ -3,24 +3,36 @@
 import { motion } from 'framer-motion'
 import { MapPin, Phone, Mail, Clock, Car } from 'lucide-react'
 
-export default function DoveSono() {
+interface DoveSonoData {
+  title: string
+  address: string
+  phone?: string
+  email?: string
+  description?: string
+}
+
+interface DoveSonoProps {
+  data?: DoveSonoData
+}
+
+export default function DoveSono({ data }: DoveSonoProps) {
   const contactInfo = [
     {
       icon: MapPin,
       title: "Indirizzo",
-      content: "Via Roma 123, 20100 Milano (MI)",
+      content: data?.address || "Via Roma 123, 20100 Milano (MI)",
       description: "Studio tecnico nel centro di Milano"
     },
     {
       icon: Phone,
       title: "Telefono",
-      content: "+39 333 123 4567",
+      content: data?.phone || "+39 333 123 4567",
       description: "Disponibile dal lunedì al venerdì"
     },
     {
       icon: Mail,
       title: "Email",
-      content: "info@studiofulminis.it",
+      content: data?.email || "info@studiofulminis.it",
       description: "Risposta entro 24 ore"
     },
     {
@@ -54,11 +66,10 @@ export default function DoveSono() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-16 text-center">
-            Dove <span className="text-blue-800">Sono</span>
+{data?.title ? data.title.split(' ').map((word, index) => index === 0 ? word : <span key={index} className="text-blue-800">{word}</span>) : <>Dove <span className="text-blue-800">Sono</span></>}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Il mio studio si trova nel cuore di Milano, ma opero in tutta la Lombardia 
-            per portare l'energia solare direttamente a casa tua.
+{data?.description || "Il mio studio si trova nel cuore di Milano, ma opero in tutta la Lombardia per portare l'energia solare direttamente a casa tua."}
           </p>
         </motion.div>
 
