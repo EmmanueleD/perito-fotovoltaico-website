@@ -13,7 +13,7 @@ export default function ChiSono() {
     {
       icon: Users,
       title: "APPROCCIO PERSONALIZZATO",
-      description: "Ogni progetto è studiato su misura per massimizzare l'efficienza energetica del cliente."
+      description: "Specializzato nell'installazione e manutenzione di impianti fotovoltaici, con particolare attenzione all'efficienza energetica e alla sostenibilità ambientale."
     },
     {
       icon: Lightbulb,
@@ -61,7 +61,7 @@ export default function ChiSono() {
             <p className="text-lg text-gray-700 mb-8 leading-relaxed text-center max-w-3xl mx-auto">
               Con oltre <span className="font-semibold text-blue-800">15 anni di esperienza</span> nel settore energetico,
               mi dedico alla <span className="font-semibold text-blue-800">progettazione e installazione</span> di sistemi
-              fotovoltaici all'avanguardia. La mia missione è rendere l'<span className="font-semibold text-green-600">energia sostenibile</span>
+              fotovoltaici all&apos;avanguardia. La mia missione è rendere l&apos;<span className="font-semibold text-green-600">energia sostenibile</span>
               accessibile a tutti.
             </p>
 
