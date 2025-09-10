@@ -9,8 +9,10 @@ import Footer from '@/components/Footer'
 import { client } from '../../tina/__generated__/client'
 
 export default async function Home() {
-  // Skip TinaCMS data fetching during build time in production
-  if (process.env.NODE_ENV === 'production' && !process.env.NEXT_PUBLIC_TINA_CLIENT_ID) {
+  // Always skip TinaCMS data fetching during build time
+  const isBuilding = process.env.NODE_ENV === 'production' && process.env.VERCEL_ENV === undefined;
+  
+  if (isBuilding) {
     return (
       <main className="min-h-screen">
         <Hero />
@@ -23,7 +25,7 @@ export default async function Home() {
     )
   }
 
-  // Fetch data from TinaCMS
+  // Fetch data from TinaCMS only at runtime
   try {
     const { data, variables, query } = await client.queries.homepage({ relativePath: 'home.json' })
 
