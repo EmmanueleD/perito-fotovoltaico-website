@@ -12,6 +12,13 @@ import { client } from '../../tina/__generated__/client'
 export default async function Home() {
   // Fetch data from TinaCMS
   try {
+    // Debug server-side environment variables
+    console.log('=== SERVER-SIDE DEBUG ===')
+    console.log('NEXT_PUBLIC_TINA_CLIENT_ID:', process.env.NEXT_PUBLIC_TINA_CLIENT_ID)
+    console.log('TINA_TOKEN:', process.env.TINA_TOKEN ? 'SET (hidden)' : 'MISSING')
+    console.log('NODE_ENV:', process.env.NODE_ENV)
+    console.log('========================')
+
     const { data, variables, query } = await client.queries.homepage({ relativePath: 'home.json' })
 
     return (
