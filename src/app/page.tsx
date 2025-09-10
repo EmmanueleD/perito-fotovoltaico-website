@@ -9,6 +9,20 @@ import Footer from '@/components/Footer'
 import { client } from '../../tina/__generated__/client'
 
 export default async function Home() {
+  // Skip TinaCMS data fetching during build time in production
+  if (process.env.NODE_ENV === 'production' && !process.env.NEXT_PUBLIC_TINA_CLIENT_ID) {
+    return (
+      <main className="min-h-screen">
+        <Hero />
+        <ChiSono />
+        <Servizi />
+        {/* <Gallery /> */} {/* TEMPORANEAMENTE COMMENTATO - Sezione "I miei progetti" */}
+        <DoveSono />
+        <Footer />
+      </main>
+    )
+  }
+
   // Fetch data from TinaCMS
   try {
     const { data, variables, query } = await client.queries.homepage({ relativePath: 'home.json' })
