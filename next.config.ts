@@ -15,6 +15,7 @@ const nextConfig: NextConfig = {
   },
   env: {
     TINA_PUBLIC_IS_LOCAL: 'false',
+    TINA_IS_LOCAL: 'false'
   },
   eslint: {
     // Warning: This allows production builds to successfully complete even if
