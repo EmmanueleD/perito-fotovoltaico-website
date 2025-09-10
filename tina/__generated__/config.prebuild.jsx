@@ -7,6 +7,17 @@ var config_default = defineConfig({
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
   // Get this from tina.io
   token: process.env.TINA_TOKEN,
+  // Debug environment variables
+  ...typeof window !== "undefined" && {
+    // Log variables in browser console for debugging
+    onLoad: () => {
+      console.log("TinaCMS Config Debug:", {
+        clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
+        token: process.env.TINA_TOKEN ? "SET" : "MISSING",
+        branch: process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || "main"
+      });
+    }
+  },
   build: {
     outputFolder: "admin",
     publicFolder: "public"
