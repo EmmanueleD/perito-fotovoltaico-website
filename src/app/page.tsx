@@ -9,24 +9,7 @@ import Footer from '@/components/Footer'
 import { client } from '../../tina/__generated__/client'
 
 export default async function Home() {
-  // Always use fallback during build - TinaCMS only works at runtime
-  const isBuildTime = typeof window === 'undefined' && process.env.NODE_ENV === 'production';
-  
-  if (isBuildTime) {
-    console.log('Build time detected - using static fallback');
-    return (
-      <main className="min-h-screen">
-        <Hero />
-        <ChiSono />
-        <Servizi />
-        {/* <Gallery /> */} {/* TEMPORANEAMENTE COMMENTATO - Sezione "I miei progetti" */}
-        <DoveSono />
-        <Footer />
-      </main>
-    )
-  }
-
-  // Fetch data from TinaCMS only at runtime
+  // Fetch data from TinaCMS
   try {
     const { data, variables, query } = await client.queries.homepage({ relativePath: 'home.json' })
 
