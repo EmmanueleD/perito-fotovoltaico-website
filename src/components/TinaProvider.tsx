@@ -5,7 +5,7 @@ import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import ChiSono from '@/components/ChiSono'
 import Servizi from '@/components/Servizi'
-import Gallery from '@/components/Gallery'
+// import Gallery from '@/components/Gallery' // TEMPORANEAMENTE COMMENTATO - Sezione "I miei progetti"
 import DoveSono from '@/components/DoveSono'
 import Footer from '@/components/Footer'
 
@@ -32,7 +32,7 @@ export default function TinaProvider({ data, variables, query }: TinaProviderPro
         <Hero data={content?.hero || undefined} />
         <ChiSono data={content?.chiSono || undefined} />
         <Servizi data={content?.servizi || undefined} />
-        <Gallery data={content?.gallery || undefined} />
+        {/* <Gallery data={content?.gallery || undefined} /> */} {/* TEMPORANEAMENTE COMMENTATO - Sezione "I miei progetti" */}
         <DoveSono data={content?.doveSono || undefined} />
         <Footer />
       </main>

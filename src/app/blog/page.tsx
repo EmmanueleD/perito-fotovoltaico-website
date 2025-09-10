@@ -110,7 +110,8 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* Blog Posts */}
+      {/* Blog Posts - TEMPORANEAMENTE COMMENTATA */}
+      {/* 
       <section className="py-16">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -123,7 +124,6 @@ export default function BlogPage() {
                 viewport={{ once: true }}
                 className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
               >
-                {/* Image */}
                 <div className="aspect-[16/10] bg-gradient-to-br from-blue-100 to-green-100 flex items-center justify-center">
                   <div className="text-center p-6">
                     <div className="w-16 h-16 bg-yellow-400 rounded-full mx-auto mb-4 flex items-center justify-center">
@@ -133,9 +133,7 @@ export default function BlogPage() {
                   </div>
                 </div>
 
-                {/* Content */}
                 <div className="p-6">
-                  {/* Category and Meta */}
                   <div className="flex items-center justify-between mb-4">
                     <span className="px-3 py-1 bg-yellow-100 text-yellow-700 text-xs font-medium rounded-full">
                       {post.category}
@@ -146,17 +144,14 @@ export default function BlogPage() {
                     </div>
                   </div>
 
-                  {/* Title */}
                   <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
                     {post.title}
                   </h3>
 
-                  {/* Excerpt */}
                   <p className="text-gray-600 mb-4 line-clamp-3">
                     {post.excerpt}
                   </p>
 
-                  {/* Date and Read More */}
                   <div className="flex items-center justify-between">
                     <div className="flex items-center text-gray-500 text-sm">
                       <Calendar className="w-4 h-4 mr-1" />
@@ -176,7 +171,6 @@ export default function BlogPage() {
             ))}
           </div>
 
-          {/* Load More Button */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -188,6 +182,21 @@ export default function BlogPage() {
               Carica altri articoli
             </button>
           </motion.div>
+        </div>
+      </section>
+      */}
+
+      {/* Messaggio temporaneo per indicare che la sezione è in sviluppo */}
+      <section className="py-16">
+        <div className="container mx-auto px-6">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Sezione in Sviluppo
+            </h2>
+            <p className="text-gray-600 text-lg">
+              Gli articoli del blog saranno disponibili a breve. Torna presto per scoprire i nostri contenuti!
+            </p>
+          </div>
         </div>
       </section>
     </div>

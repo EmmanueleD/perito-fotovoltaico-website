@@ -4,14 +4,13 @@
     "surname": "FULMINIS",
     "title": "PERITO INDUSTRIALE",
     "subtitle": "SPECIALISTA IN SISTEMI FOTOVOLTAICI",
-    "description": "ciao io sono un testo normale\n\n**ciao io sono un testo in grassetto**\n\n***ciao io sono un testo in grassetto e corsivo***\n",
+    "description": "",
     "ctaPrimary": "SCOPRI I MIEI SERVIZI",
-    "ctaSecondary": "CONTATTAMI",
-    "scrollText": "SCOPRI DI PIÙ"
+    "ctaSecondary": "CONTATTAMI"
   },
   "chiSono": {
     "title": "Chi Sono",
-    "description": "\\[object Object]\n",
+    "description": "",
     "image": "/images/danilo-fulminis.jpg"
   },
   "servizi": {
@@ -21,22 +20,7 @@
       {
         "title": "Progettazione Impianti",
         "description": "Progettazione tecnica completa di sistemi fotovoltaici su misura per le tue esigenze energetiche.",
-        "icon": "/images/design-icon.svg"
-      },
-      {
-        "title": "Installazione",
-        "description": "Installazione professionale di pannelli solari e sistemi di accumulo con garanzia di qualità.",
-        "icon": "/images/install-icon.svg"
-      },
-      {
-        "title": "Manutenzione",
-        "description": "Servizi di manutenzione preventiva e correttiva per garantire massime performance nel tempo.",
-        "icon": "/images/maintenance-icon.svg"
-      },
-      {
-        "title": "Consulenza Energetica",
-        "description": "Analisi dei consumi e consulenza per l'ottimizzazione dell'efficienza energetica.",
-        "icon": "/images/consulting-icon.svg"
+        "icon": "/IMG_9618.jpeg"
       }
     ]
   },
