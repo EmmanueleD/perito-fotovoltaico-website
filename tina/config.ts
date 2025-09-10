@@ -15,6 +15,11 @@ export default defineConfig({
   // Get this from tina.io
   token: process.env.TINA_TOKEN,
 
+  // Debug logging
+  ...(process.env.NODE_ENV === 'development' && {
+    localContentPath: './content'
+  }),
+
   build: {
     outputFolder: "admin",
     publicFolder: "public"
