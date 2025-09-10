@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Danilo Fulminis - Perito Fotovoltaico Website
 
-## Getting Started
+Sito web professionale per Danilo Fulminis, perito industriale specializzato in sistemi fotovoltaici.
 
-First, run the development server:
+## Stack Tecnologico
+
+- **Next.js 15.4.3** - Framework React
+- **TinaCMS 2.8.1** - Content Management System
+- **TailwindCSS** - Styling
+- **TypeScript** - Type safety
+
+## Sviluppo Locale
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Apri [http://localhost:3000](http://localhost:3000) per vedere il sito.
+TinaCMS admin: [http://localhost:3000/admin](http://localhost:3000/admin)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deploy su Vercel
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Il sito è configurato per il deploy automatico su Vercel dal repository GitHub.
 
-## Learn More
+### Variabili d'Ambiente Richieste
 
-To learn more about Next.js, take a look at the following resources:
+Per il funzionamento di TinaCMS in produzione:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+NEXT_PUBLIC_TINA_CLIENT_ID=your_client_id
+TINA_TOKEN=your_token
+GITHUB_BRANCH=main
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Configurare su Vercel Dashboard → Settings → Environment Variables
 
-## Deploy on Vercel
+## TinaCMS Setup
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Crea progetto su [app.tina.io](https://app.tina.io)
+2. Collega repository: `EmmanueleD/perito-fotovoltaico-website`
+3. Ottieni credenziali e configurale su Vercel
+4. Redeploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Struttura Progetto
+
+- `/src/app` - Pages e layout Next.js
+- `/src/components` - Componenti React
+- `/content` - Contenuti TinaCMS
+- `/tina` - Configurazione TinaCMS
+- `/public` - Assets statici
