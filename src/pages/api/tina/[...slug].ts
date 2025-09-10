@@ -1,17 +1,30 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
+// TinaCMS API handler for production
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  // Simple proxy to TinaCMS Cloud
-  // This endpoint is required for TinaCMS to work in production
-  // but since we're using TinaCMS Cloud, we just need to return success
+  const { slug } = req.query;
   
-  if (req.method === 'GET') {
-    return res.status(200).json({ message: 'TinaCMS API endpoint' });
+  // Handle GraphQL endpoint
+  if (slug && slug[0] === 'graphql') {
+    // Proxy to TinaCMS Cloud GraphQL endpoint
+    const tinaCloudUrl = `https://content.tinajs.io/content/${process.env.NEXT_PUBLIC_TINA_CLIENT_ID}/github/${process.env.GITHUB_BRANCH || 'main'}`;
+    
+    if (req.method === 'POST') {
+      // Forward GraphQL queries to TinaCMS Cloud
+      return fetch(tinaCloudUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.TINA_TOKEN}`,
+        },
+        body: JSON.stringify(req.body),
+      })
+      .then(response => response.json())
+      .then(data => res.json(data))
+      .catch(error => res.status(500).json({ error: error.message }));
+    }
   }
   
-  if (req.method === 'POST') {
-    return res.status(200).json({ success: true });
-  }
-  
-  return res.status(405).json({ error: 'Method not allowed' });
+  // Default response for other endpoints
+  return res.status(200).json({ message: 'TinaCMS API endpoint' });
 }
