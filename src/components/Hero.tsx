@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowDown, Sun, Zap } from "lucide-react";
 import TinaRichText from "./TinaRichText";
+import { tinaField } from "tinacms/dist/react";
 
 interface HeroData {
   name: string;
@@ -13,6 +14,7 @@ interface HeroData {
   ctaPrimary: string;
   ctaSecondary: string;
   scrollText: string;
+  [key: string]: any;
 }
 
 interface HeroProps {
@@ -44,20 +46,24 @@ export default function Hero({ data }: HeroProps) {
 
           {/* Main heading */}
           <h1 className="text-6xl md:text-8xl font-bold text-gray-800 mb-6 text-center uppercase tracking-wider">
-            {data?.name || "DANILO"}{" "}
-            <span className="text-blue-800">{data?.surname || "FULMINIS"}</span>
+            <span data-tina-field={tinaField(data, "name")}>
+              {data?.name || "DANILO"}
+            </span>{" "}
+            <span className="text-blue-800" data-tina-field={tinaField(data, "surname")}>
+              {data?.surname || "FULMINIS"}
+            </span>
           </h1>
 
           {/* Subtitle */}
-          <p className="text-2xl md:text-3xl text-blue-800 mb-4 text-center font-bold uppercase tracking-wide">
+          <p className="text-2xl md:text-3xl text-blue-800 mb-4 text-center font-bold uppercase tracking-wide" data-tina-field={tinaField(data, "title")}>
             {data?.title || "PERITO INDUSTRIALE"}
           </p>
-          <p className="text-xl md:text-2xl text-gray-600 mb-12 text-center font-semibold uppercase tracking-wide">
+          <p className="text-xl md:text-2xl text-gray-600 mb-12 text-center font-semibold uppercase tracking-wide" data-tina-field={tinaField(data, "subtitle")}>
             {data?.subtitle || "SPECIALISTA IN SISTEMI FOTOVOLTAICI"}
           </p>
 
           {/* Description */}
-          <div className="text-lg md:text-xl text-gray-700 mb-12 text-center max-w-4xl mx-auto leading-relaxed">
+          <div className="text-lg md:text-xl text-gray-700 mb-12 text-center max-w-4xl mx-auto leading-relaxed" data-tina-field={tinaField(data, "description")}>
             {data?.description ? (
               <TinaRichText
                 content={data.description}
@@ -89,6 +95,7 @@ export default function Hero({ data }: HeroProps) {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-blue-800 hover:bg-blue-900 text-white px-10 py-5 text-xl font-bold transition-all shadow-lg"
+              data-tina-field={tinaField(data, "ctaPrimary")}
             >
               {data?.ctaPrimary || "SCOPRI I MIEI SERVIZI"}
             </motion.button>
@@ -96,6 +103,7 @@ export default function Hero({ data }: HeroProps) {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="border-2 border-gray-600 text-gray-600 hover:bg-gray-600 hover:text-white px-10 py-5 text-xl font-bold transition-all shadow-lg"
+              data-tina-field={tinaField(data, "ctaSecondary")}
             >
               {data?.ctaSecondary || "CONTATTAMI"}
             </motion.button>
