@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Header from '@/components/Header';
 import CookieBanner from '@/components/CookieBanner';
 
 export const metadata: Metadata = {
@@ -55,7 +56,10 @@ export default function RootLayout({
         className="antialiased"
         style={{ fontFamily: "'Slabo 13px', serif" }}
       >
-        {children}
+        <Header />
+        <div className="pt-16 md:pt-20">
+          {children}
+        </div>
         <CookieBanner />
       </body>
     </html>

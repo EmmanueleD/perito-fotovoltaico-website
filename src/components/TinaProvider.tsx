@@ -1,7 +1,6 @@
 'use client'
 
 import { useTina } from 'tinacms/dist/react'
-import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import ChiSono from '@/components/ChiSono'
 import Servizi from '@/components/Servizi'
@@ -26,16 +25,13 @@ export default function TinaProvider({ data, variables, query }: TinaProviderPro
   const content = tinaData.homepage
 
   return (
-    <>
-      <Header />
-      <main className="min-h-screen pt-16 md:pt-20">
-        <Hero data={content?.hero || undefined} />
-        <ChiSono data={content?.chiSono || undefined} />
-        <Servizi data={content?.servizi || undefined} />
-        {/* <Gallery data={content?.gallery || undefined} /> */} {/* TEMPORANEAMENTE COMMENTATO - Sezione "I miei progetti" */}
-        <DoveSono data={content?.doveSono || undefined} />
-        <Footer />
-      </main>
-    </>
+    <main className="min-h-screen">
+      <Hero data={content?.hero || undefined} />
+      <ChiSono data={content?.chiSono || undefined} />
+      <Servizi data={content?.servizi || undefined} />
+      {/* <Gallery data={content?.gallery || undefined} /> */} {/* TEMPORANEAMENTE COMMENTATO - Sezione "I miei progetti" */}
+      <DoveSono data={content?.doveSono || undefined} />
+      <Footer />
+    </main>
   )
 }

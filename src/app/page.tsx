@@ -1,4 +1,5 @@
 import TinaProvider from '@/components/TinaProvider'
+import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import ChiSono from '@/components/ChiSono'
 import Servizi from '@/components/Servizi'
