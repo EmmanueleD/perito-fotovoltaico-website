@@ -9,10 +9,11 @@ import Footer from '@/components/Footer'
 import { client } from '../../tina/__generated__/client'
 
 export default async function Home() {
-  // Always skip TinaCMS data fetching during build time
-  const isBuilding = process.env.NODE_ENV === 'production' && process.env.VERCEL_ENV === undefined;
+  // Always use fallback during build - TinaCMS only works at runtime
+  const isBuildTime = typeof window === 'undefined' && process.env.NODE_ENV === 'production';
   
-  if (isBuilding) {
+  if (isBuildTime) {
+    console.log('Build time detected - using static fallback');
     return (
       <main className="min-h-screen">
         <Hero />
