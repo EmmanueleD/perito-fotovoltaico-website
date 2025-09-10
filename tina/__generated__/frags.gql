@@ -1,0 +1,57 @@
+fragment HomepageParts on Homepage {
+  __typename
+  hero {
+    __typename
+    name
+    surname
+    title
+    subtitle
+    description
+    ctaPrimary
+    ctaSecondary
+  }
+  chiSono {
+    __typename
+    title
+    description
+    image
+  }
+  servizi {
+    __typename
+    title
+    subtitle
+    services {
+      __typename
+      title
+      description
+      icon
+    }
+  }
+  gallery {
+    __typename
+    title
+    subtitle
+    projects {
+      __typename
+      title
+      description
+      image
+      location
+      year
+    }
+  }
+  doveSono {
+    __typename
+    title
+    address
+    phone
+    email
+    description
+  }
+}
+
+fragment PostParts on Post {
+  __typename
+  title
+  body
+}
