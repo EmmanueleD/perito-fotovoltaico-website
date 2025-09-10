@@ -3,11 +3,13 @@
 import { motion } from 'framer-motion'
 import { Award, Users, Lightbulb, Shield } from 'lucide-react'
 import TinaRichText from './TinaRichText'
+import { tinaField } from "tinacms/dist/react"
 
 interface ChiSonoData {
   title: string
   description: any
   image?: string | null
+  [key: string]: any
 }
 
 interface ChiSonoProps {
@@ -50,7 +52,7 @@ export default function ChiSono({ data }: ChiSonoProps) {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="relative w-full h-96 overflow-hidden shadow-lg border border-gray-300">
+            <div className="relative w-full h-96 overflow-hidden shadow-lg border border-gray-300" data-tina-field={tinaField(data, "image")}>
               {data?.image ? (
                 <img 
                   src={data.image} 
@@ -75,11 +77,11 @@ export default function ChiSono({ data }: ChiSonoProps) {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-8 text-center">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-8 text-center" data-tina-field={tinaField(data, "title")}>
   {data?.title ? data.title.split(' ').map((word, index) => index === 0 ? word : <span key={index} className="text-blue-800">{word}</span>) : <>Chi <span className="text-blue-800">Sono</span></>}
             </h2>
             
-            <div className="text-lg text-gray-700 mb-8 leading-relaxed text-center max-w-3xl mx-auto">
+            <div className="text-lg text-gray-700 mb-8 leading-relaxed text-center max-w-3xl mx-auto" data-tina-field={tinaField(data, "description")}>
               {data?.description ? (
                 <TinaRichText content={data.description} className="text-center" />
               ) : (

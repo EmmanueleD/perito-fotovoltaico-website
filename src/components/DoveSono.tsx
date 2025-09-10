@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { MapPin, Phone, Mail, Clock, Car } from 'lucide-react'
+import { tinaField } from "tinacms/dist/react"
 
 interface DoveSonoData {
   title: string
@@ -9,6 +10,7 @@ interface DoveSonoData {
   phone?: string
   email?: string
   description?: string
+  [key: string]: any
 }
 
 interface DoveSonoProps {
@@ -65,10 +67,10 @@ export default function DoveSono({ data }: DoveSonoProps) {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-16 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-16 text-center" data-tina-field={tinaField(data, "title")}>
 {data?.title ? data.title.split(' ').map((word, index) => index === 0 ? word : <span key={index} className="text-blue-800">{word}</span>) : <>Dove <span className="text-blue-800">Sono</span></>}
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto" data-tina-field={tinaField(data, "description")}>
 {data?.description || "Il mio studio si trova nel cuore di Milano, ma opero in tutta la Lombardia per portare l'energia solare direttamente a casa tua."}
           </p>
         </motion.div>

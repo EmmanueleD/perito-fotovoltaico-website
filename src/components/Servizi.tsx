@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Sun, Settings, BarChart3, Shield, Wrench, Calculator } from 'lucide-react'
+import { tinaField } from "tinacms/dist/react"
 
 interface Service {
   title: string
@@ -13,6 +14,7 @@ interface ServiziData {
   title: string
   subtitle?: string | null
   services?: Service[] | null
+  [key: string]: any
 }
 
 interface ServiziProps {
@@ -70,10 +72,10 @@ export default function Servizi({ data }: ServiziProps) {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6 text-center" data-tina-field={tinaField(data, "title")}>
 {data?.title ? data.title.split(' ').map((word, index) => index <= 1 ? word + ' ' : <span key={index} className="text-blue-800">{word}</span>) : <>I Miei <span className="text-blue-800">Servizi</span></>}
           </h2>
-          <p className="text-lg text-gray-600 text-center max-w-3xl mx-auto">
+          <p className="text-lg text-gray-600 text-center max-w-3xl mx-auto" data-tina-field={tinaField(data, "subtitle")}>
 {data?.subtitle || "Soluzioni complete per l'energia sostenibile"}
           </p>
         </motion.div>
