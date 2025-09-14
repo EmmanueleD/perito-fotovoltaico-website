@@ -34,6 +34,14 @@ export default function Header() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
+            <div className="flex flex-col">
+              <span className="text-lg md:text-xl font-bold text-blue-800">
+                Studio Fulminis
+              </span>
+              <span className="text-xs md:text-sm text-gray-600 hidden sm:block">
+                Ingnegneria industriale
+              </span>
+            </div>
             <div className="relative w-10 h-10 md:w-12 md:h-12">
               <Image
                 src="/images/logo.png"
@@ -42,14 +50,6 @@ export default function Header() {
                 className="object-contain"
                 priority
               />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-lg md:text-xl font-bold text-blue-800">
-                Studio Fulminis
-              </span>
-              <span className="text-xs md:text-sm text-gray-600 hidden sm:block">
-                Sistemi Fotovoltaici
-              </span>
             </div>
           </motion.div>
 
