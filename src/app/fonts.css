@@ -1,0 +1,31 @@
+@font-face {
+  font-family: 'Siemens Sans';
+  src: url('/Siemens Sans/Siemens Sans Roman/Siemens Sans Roman.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Siemens Sans';
+  src: url('/Siemens Sans/Siemens Sans Italic/Siemens Sans Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Siemens Sans';
+  src: url('/Siemens Sans/Siemens Sans Bold/Siemens Sans Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Siemens Sans';
+  src: url('/Siemens Sans/Siemens Sans Bold Italic/Siemens Sans Bold Italic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}

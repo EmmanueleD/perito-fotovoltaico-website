@@ -89,15 +89,8 @@ export default function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Slabo+13px&display=swap"
-          rel="stylesheet"
-        />
       </head>
-      <body
-        className="antialiased"
-        style={{ fontFamily: "'Slabo 13px', serif" }}
-      >
+      <body className="antialiased">
         <Header />
         <div className="pt-16 md:pt-20">{children}</div>
         <CookieBanner />

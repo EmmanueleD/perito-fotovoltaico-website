@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        'slabo': ['var(--font-slabo)', 'serif'],
+        sans: ['Siemens Sans', 'system-ui', 'sans-serif'],
       },
       colors: {
         // Professional solar energy color palette
