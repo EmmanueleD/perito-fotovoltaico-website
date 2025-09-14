@@ -49,3 +49,4 @@ Configurare su Vercel Dashboard → Settings → Environment Variables
 - `/content` - Contenuti TinaCMS
 - `/tina` - Configurazione TinaCMS
 - `/public` - Assets statici
+# Schema sync trigger
