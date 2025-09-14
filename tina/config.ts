@@ -347,37 +347,6 @@ export default defineConfig({
                 required: true
               }
             ]
-          },
-          {
-            type: "object",
-            name: "footer",
-            label: "Footer",
-            fields: [
-              {
-                type: "string",
-                name: "name",
-                label: "Nome Completo",
-                required: true
-              },
-              {
-                type: "string",
-                name: "title",
-                label: "Titolo Professionale",
-                required: true
-              },
-              {
-                type: "rich-text",
-                name: "description",
-                label: "Descrizione",
-                required: true
-              },
-              {
-                type: "string",
-                name: "copyright",
-                label: "Testo Copyright",
-                required: true
-              }
-            ]
           }
         ]
       },

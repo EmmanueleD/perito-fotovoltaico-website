@@ -249,21 +249,12 @@ export type HomepageContatti = {
   emailButtonText: Scalars['String']['output'];
 };
 
-export type HomepageFooter = {
-  __typename?: 'HomepageFooter';
-  name: Scalars['String']['output'];
-  title: Scalars['String']['output'];
-  description: Scalars['JSON']['output'];
-  copyright: Scalars['String']['output'];
-};
-
 export type Homepage = Node & Document & {
   __typename?: 'Homepage';
   hero?: Maybe<HomepageHero>;
   chiSono?: Maybe<HomepageChiSono>;
   servizi?: Maybe<HomepageServizi>;
   contatti?: Maybe<HomepageContatti>;
-  footer?: Maybe<HomepageFooter>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
@@ -348,19 +339,11 @@ export type HomepageContattiFilter = {
   emailButtonText?: InputMaybe<StringFilter>;
 };
 
-export type HomepageFooterFilter = {
-  name?: InputMaybe<StringFilter>;
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<RichTextFilter>;
-  copyright?: InputMaybe<StringFilter>;
-};
-
 export type HomepageFilter = {
   hero?: InputMaybe<HomepageHeroFilter>;
   chiSono?: InputMaybe<HomepageChiSonoFilter>;
   servizi?: InputMaybe<HomepageServiziFilter>;
   contatti?: InputMaybe<HomepageContattiFilter>;
-  footer?: InputMaybe<HomepageFooterFilter>;
 };
 
 export type HomepageConnectionEdges = {
@@ -559,19 +542,11 @@ export type HomepageContattiMutation = {
   emailButtonText?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type HomepageFooterMutation = {
-  name?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['JSON']['input']>;
-  copyright?: InputMaybe<Scalars['String']['input']>;
-};
-
 export type HomepageMutation = {
   hero?: InputMaybe<HomepageHeroMutation>;
   chiSono?: InputMaybe<HomepageChiSonoMutation>;
   servizi?: InputMaybe<HomepageServiziMutation>;
   contatti?: InputMaybe<HomepageContattiMutation>;
-  footer?: InputMaybe<HomepageFooterMutation>;
 };
 
 export type PostMutation = {
@@ -583,7 +558,7 @@ export type PostMutation = {
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
-export type HomepagePartsFragment = { __typename: 'Homepage', hero?: { __typename: 'HomepageHero', name: string, surname: string, title: string, subtitle: string, description: any, ctaPrimary: string, ctaSecondary: string, heroIcon?: string | null } | null, chiSono?: { __typename: 'HomepageChiSono', title: string, description: any, image?: string | null, features?: Array<{ __typename: 'HomepageChiSonoFeatures', title: string, description: string, icon?: string | null } | null> | null } | null, servizi?: { __typename: 'HomepageServizi', title: string, subtitle?: string | null, description?: any | null, services?: Array<{ __typename: 'HomepageServiziServices', title: string, description: string, icon: string, features?: Array<string | null> | null } | null> | null } | null, contatti?: { __typename: 'HomepageContatti', title: string, description: string, address: string, phone: string, email: string, workingHours: string, mapUrl: string, zonesTitle: string, zonesDescription: string, appointmentTitle: string, appointmentDescription: string, callButtonText: string, emailButtonText: string, zonesList?: Array<{ __typename: 'HomepageContattiZonesList', name: string } | null> | null } | null, footer?: { __typename: 'HomepageFooter', name: string, title: string, description: any, copyright: string } | null };
+export type HomepagePartsFragment = { __typename: 'Homepage', hero?: { __typename: 'HomepageHero', name: string, surname: string, title: string, subtitle: string, description: any, ctaPrimary: string, ctaSecondary: string, heroIcon?: string | null } | null, chiSono?: { __typename: 'HomepageChiSono', title: string, description: any, image?: string | null, features?: Array<{ __typename: 'HomepageChiSonoFeatures', title: string, description: string, icon?: string | null } | null> | null } | null, servizi?: { __typename: 'HomepageServizi', title: string, subtitle?: string | null, description?: any | null, services?: Array<{ __typename: 'HomepageServiziServices', title: string, description: string, icon: string, features?: Array<string | null> | null } | null> | null } | null, contatti?: { __typename: 'HomepageContatti', title: string, description: string, address: string, phone: string, email: string, workingHours: string, mapUrl: string, zonesTitle: string, zonesDescription: string, appointmentTitle: string, appointmentDescription: string, callButtonText: string, emailButtonText: string, zonesList?: Array<{ __typename: 'HomepageContattiZonesList', name: string } | null> | null } | null };
 
 export type PostPartsFragment = { __typename: 'Post', title: string, tags?: Array<string | null> | null, date: string, excerpt?: string | null, coverImage?: string | null, body?: any | null };
 
@@ -592,7 +567,7 @@ export type HomepageQueryVariables = Exact<{
 }>;
 
 
-export type HomepageQuery = { __typename?: 'Query', homepage: { __typename: 'Homepage', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'HomepageHero', name: string, surname: string, title: string, subtitle: string, description: any, ctaPrimary: string, ctaSecondary: string, heroIcon?: string | null } | null, chiSono?: { __typename: 'HomepageChiSono', title: string, description: any, image?: string | null, features?: Array<{ __typename: 'HomepageChiSonoFeatures', title: string, description: string, icon?: string | null } | null> | null } | null, servizi?: { __typename: 'HomepageServizi', title: string, subtitle?: string | null, description?: any | null, services?: Array<{ __typename: 'HomepageServiziServices', title: string, description: string, icon: string, features?: Array<string | null> | null } | null> | null } | null, contatti?: { __typename: 'HomepageContatti', title: string, description: string, address: string, phone: string, email: string, workingHours: string, mapUrl: string, zonesTitle: string, zonesDescription: string, appointmentTitle: string, appointmentDescription: string, callButtonText: string, emailButtonText: string, zonesList?: Array<{ __typename: 'HomepageContattiZonesList', name: string } | null> | null } | null, footer?: { __typename: 'HomepageFooter', name: string, title: string, description: any, copyright: string } | null } };
+export type HomepageQuery = { __typename?: 'Query', homepage: { __typename: 'Homepage', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'HomepageHero', name: string, surname: string, title: string, subtitle: string, description: any, ctaPrimary: string, ctaSecondary: string, heroIcon?: string | null } | null, chiSono?: { __typename: 'HomepageChiSono', title: string, description: any, image?: string | null, features?: Array<{ __typename: 'HomepageChiSonoFeatures', title: string, description: string, icon?: string | null } | null> | null } | null, servizi?: { __typename: 'HomepageServizi', title: string, subtitle?: string | null, description?: any | null, services?: Array<{ __typename: 'HomepageServiziServices', title: string, description: string, icon: string, features?: Array<string | null> | null } | null> | null } | null, contatti?: { __typename: 'HomepageContatti', title: string, description: string, address: string, phone: string, email: string, workingHours: string, mapUrl: string, zonesTitle: string, zonesDescription: string, appointmentTitle: string, appointmentDescription: string, callButtonText: string, emailButtonText: string, zonesList?: Array<{ __typename: 'HomepageContattiZonesList', name: string } | null> | null } | null } };
 
 export type HomepageConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -604,7 +579,7 @@ export type HomepageConnectionQueryVariables = Exact<{
 }>;
 
 
-export type HomepageConnectionQuery = { __typename?: 'Query', homepageConnection: { __typename?: 'HomepageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'HomepageConnectionEdges', cursor: string, node?: { __typename: 'Homepage', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'HomepageHero', name: string, surname: string, title: string, subtitle: string, description: any, ctaPrimary: string, ctaSecondary: string, heroIcon?: string | null } | null, chiSono?: { __typename: 'HomepageChiSono', title: string, description: any, image?: string | null, features?: Array<{ __typename: 'HomepageChiSonoFeatures', title: string, description: string, icon?: string | null } | null> | null } | null, servizi?: { __typename: 'HomepageServizi', title: string, subtitle?: string | null, description?: any | null, services?: Array<{ __typename: 'HomepageServiziServices', title: string, description: string, icon: string, features?: Array<string | null> | null } | null> | null } | null, contatti?: { __typename: 'HomepageContatti', title: string, description: string, address: string, phone: string, email: string, workingHours: string, mapUrl: string, zonesTitle: string, zonesDescription: string, appointmentTitle: string, appointmentDescription: string, callButtonText: string, emailButtonText: string, zonesList?: Array<{ __typename: 'HomepageContattiZonesList', name: string } | null> | null } | null, footer?: { __typename: 'HomepageFooter', name: string, title: string, description: any, copyright: string } | null } | null } | null> | null } };
+export type HomepageConnectionQuery = { __typename?: 'Query', homepageConnection: { __typename?: 'HomepageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'HomepageConnectionEdges', cursor: string, node?: { __typename: 'Homepage', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'HomepageHero', name: string, surname: string, title: string, subtitle: string, description: any, ctaPrimary: string, ctaSecondary: string, heroIcon?: string | null } | null, chiSono?: { __typename: 'HomepageChiSono', title: string, description: any, image?: string | null, features?: Array<{ __typename: 'HomepageChiSonoFeatures', title: string, description: string, icon?: string | null } | null> | null } | null, servizi?: { __typename: 'HomepageServizi', title: string, subtitle?: string | null, description?: any | null, services?: Array<{ __typename: 'HomepageServiziServices', title: string, description: string, icon: string, features?: Array<string | null> | null } | null> | null } | null, contatti?: { __typename: 'HomepageContatti', title: string, description: string, address: string, phone: string, email: string, workingHours: string, mapUrl: string, zonesTitle: string, zonesDescription: string, appointmentTitle: string, appointmentDescription: string, callButtonText: string, emailButtonText: string, zonesList?: Array<{ __typename: 'HomepageContattiZonesList', name: string } | null> | null } | null } | null } | null> | null } };
 
 export type PostQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -683,13 +658,6 @@ export const HomepagePartsFragmentDoc = gql`
     appointmentDescription
     callButtonText
     emailButtonText
-  }
-  footer {
-    __typename
-    name
-    title
-    description
-    copyright
   }
 }
     `;
@@ -880,7 +848,7 @@ export const ExperimentalGetTinaClient = () =>
   getSdk(
     generateRequester(
       createClient({
-        url: "https://content.tinajs.io/1.6/content/66cb0674-8cab-41ce-bc1a-b96ed6911276/github/main",
+        url: "http://localhost:4001/graphql",
         queries,
       })
     )

@@ -56,13 +56,6 @@ fragment HomepageParts on Homepage {
     callButtonText
     emailButtonText
   }
-  footer {
-    __typename
-    name
-    title
-    description
-    copyright
-  }
 }
 
 fragment PostParts on Post {

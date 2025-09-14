@@ -1,54 +1,54 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
-import { Sun, Mail, Phone, MapPin, ExternalLink } from 'lucide-react'
-import Link from 'next/link'
-import { tinaField } from 'tinacms/dist/react'
-import { TinaMarkdown } from 'tinacms/dist/rich-text'
-
-interface FooterData {
-  name: string
-  title: string
-  description: any
-  copyright: string
-  [key: string]: any
-}
+import { motion } from "framer-motion";
+import { Mail, Phone, MapPin, Sun, Clock, ExternalLink } from "lucide-react";
+import Link from "next/link";
+import { tinaField } from "tinacms/dist/react";
 
 interface FooterProps {
   data?: {
-    footer: FooterData
     contatti?: {
-      phone?: string
-      email?: string
-      address?: string
-    }
-  }
+      address?: string;
+      phone?: string;
+      email?: string;
+      workingHours?: string;
+    };
+    hero?: {
+      name?: string;
+      surname?: string;
+      title?: string;
+      subtitle?: string;
+      heroIcon?: string;
+    };
+  };
 }
 
-const quickLinks = [
-  { name: 'Chi Sono', href: '#chi-sono' },
-  { name: 'Servizi', href: '#servizi' },
-  { name: 'Gallery', href: '#gallery' },
-  { name: 'Contatti', href: '#contatti' },
-  { name: 'Blog', href: '/blog' }
-]
-
 export default function Footer({ data }: FooterProps) {
-  const currentYear = new Date().getFullYear()
-  
-  // Default values in case data is not available
-  const footerData = data?.footer || {
-    name: 'Danilo Fulminis',
-    title: 'Perito Industriale',
-    description: 'Specializzato nella progettazione e installazione di sistemi fotovoltaici. Il tuo partner per l\'indipendenza energetica e un futuro sostenibile.',
-    copyright: `© ${currentYear} Danilo Fulminis. Tutti i diritti riservati.`
-  }
-  
-  const contactData = data?.contatti || {
-    phone: '+39 333 123 4567',
-    email: 'info@studiofulminis.it',
-    address: 'Via Roma 123, 20100 Milano (MI)'
-  }
+  const currentYear = new Date().getFullYear();
+  const contactInfo = data?.contatti || {};
+  const phoneNumber = contactInfo.phone?.replace(/[^\d+]/g, "") || "";
+
+  const quickLinks = [
+    { name: "Chi Sono", href: "#chi-sono" },
+    { name: "Servizi", href: "#servizi" },
+    { name: "Gallery", href: "#gallery" },
+    { name: "Contatti", href: "#contatti" },
+    { name: "Blog", href: "/blog" }
+  ];
+
+  const socialLinks = [
+    { name: "Facebook", href: "#" },
+    { name: "LinkedIn", href: "#" },
+    { name: "Instagram", href: "#" }
+  ];
+
+  const services = [
+    "Progettazione Fotovoltaico",
+    "Installazione Pannelli",
+    "Manutenzione Impianti",
+    "Pratiche Burocratiche",
+    "Consulenza Energetica"
+  ];
 
   return (
     <footer className="bg-gray-900 text-white">
@@ -62,57 +62,86 @@ export default function Footer({ data }: FooterProps) {
             viewport={{ once: true }}
             className="lg:col-span-2"
           >
-            <div className="flex items-center mb-6">
-              <div className="p-3 bg-yellow-500 mr-4">
-                <Sun className="w-8 h-8 text-white" />
+            <div
+              className="flex items-center mb-6"
+              data-tina-field={tinaField(data?.hero, "name")}
+            >
+              <div className="p-3 bg-white mr-4">
+                {data?.hero?.heroIcon ? (
+                  <img
+                    src={data.hero.heroIcon}
+                    alt="Logo"
+                    className="w-8 h-8 object-contain"
+                    data-tina-field={tinaField(data.hero, "heroIcon")}
+                  />
+                ) : (
+                  <Sun className="w-8 h-8 text-white" />
+                )}
               </div>
               <div>
-                <h3 
-                  className="text-2xl font-bold"
-                  data-tina-field={tinaField(footerData, 'name')}
-                >
-                  {footerData.name}
+                <h3 className="text-2xl font-bold">
+                  {data?.hero?.name} {data?.hero?.surname}
                 </h3>
-                <p 
-                  className="text-gray-400"
-                  data-tina-field={tinaField(footerData, 'title')}
-                >
-                  {footerData.title}
-                </p>
+                <p className="text-gray-400">{data?.hero?.title}</p>
               </div>
             </div>
-            
-            <div 
+
+            <p
               className="text-gray-300 mb-6 leading-relaxed max-w-md"
-              data-tina-field={tinaField(footerData, 'description')}
+              data-tina-field={tinaField(data?.hero, "subtitle")}
             >
-              <TinaMarkdown content={footerData.description} />
-            </div>
+              {data?.hero?.subtitle}
+            </p>
 
             {/* Contact Info */}
             <div className="space-y-3">
-              <div className="flex items-center text-gray-300">
-                <Phone className="w-5 h-5 mr-3 text-yellow-400 flex-shrink-0" />
-                <span data-tina-field={tinaField(contactData, 'phone')}>
-                  {contactData.phone}
-                </span>
-              </div>
-              <div className="flex items-center text-gray-300">
-                <Mail className="w-5 h-5 mr-3 text-yellow-400 flex-shrink-0" />
-                <a 
-                  href={`mailto:${contactData.email}`}
+              <div
+                className="flex items-center text-gray-300"
+                data-tina-field={tinaField(data?.contatti, "phone")}
+              >
+                <Phone className="w-5 h-5 mr-3 text-yellow-400" />
+                <a
+                  href={`tel:${phoneNumber}`}
                   className="hover:text-yellow-400 transition-colors"
-                  data-tina-field={tinaField(contactData, 'email')}
                 >
-                  {contactData.email}
+                  {contactInfo.phone || "+39 333 123 4567"}
                 </a>
               </div>
-              <div className="flex items-start text-gray-300">
-                <MapPin className="w-5 h-5 mr-3 text-yellow-400 mt-0.5 flex-shrink-0" />
-                <span data-tina-field={tinaField(contactData, 'address')}>
-                  {contactData.address}
+              <div
+                className="flex items-center text-gray-300"
+                data-tina-field={tinaField(data?.contatti, "email")}
+              >
+                <Mail className="w-5 h-5 mr-3 text-yellow-400" />
+                <a
+                  href={`mailto:${
+                    contactInfo.email || "info@studiofulminis.it"
+                  }`}
+                  className="hover:text-yellow-400 transition-colors"
+                >
+                  {contactInfo.email || "info@studiofulminis.it"}
+                </a>
+              </div>
+              <div
+                className="flex items-center text-gray-300"
+                data-tina-field={tinaField(data?.contatti, "address")}
+              >
+                <MapPin className="w-5 h-5 mr-3 text-yellow-400 flex-shrink-0" />
+                <span>
+                  {contactInfo.address || "Via Roma 123, 20100 Milano (MI)"}
                 </span>
               </div>
+              {contactInfo.workingHours && (
+                <div
+                  className="flex items-start text-gray-300 mt-3"
+                  data-tina-field={tinaField(data?.contatti, "workingHours")}
+                >
+                  <Clock className="w-5 h-5 mr-3 text-yellow-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <h5 className="font-medium text-white">Orari di Lavoro</h5>
+                    <p className="text-sm">{contactInfo.workingHours}</p>
+                  </div>
+                </div>
+              )}
             </div>
           </motion.div>
 
@@ -127,7 +156,7 @@ export default function Footer({ data }: FooterProps) {
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
-                  <Link 
+                  <Link
                     href={link.href}
                     className="text-gray-300 hover:text-yellow-400 transition-colors duration-200"
                   >
@@ -147,13 +176,7 @@ export default function Footer({ data }: FooterProps) {
           >
             <h4 className="text-xl font-bold mb-6">Servizi</h4>
             <ul className="space-y-3">
-              {[
-                'Progettazione Fotovoltaico',
-                'Installazione Pannelli',
-                'Manutenzione Impianti',
-                'Pratiche Burocratiche',
-                'Consulenza Energetica'
-              ].map((service: string, index: number) => (
+              {services.map((service, index) => (
                 <li key={index} className="text-gray-300 text-sm">
                   {service}
                 </li>
@@ -172,22 +195,28 @@ export default function Footer({ data }: FooterProps) {
         >
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             {/* Copyright */}
-            <p 
-              className="text-center text-gray-400 text-sm"
-              data-tina-field={tinaField(footerData, 'copyright')}
-            >
-              {footerData.copyright || `© ${currentYear} Danilo Fulminis. Tutti i diritti riservati.`}
-            </p>
+            <div className="text-gray-400 text-sm">
+              © {currentYear} Danilo Fulminis. Tutti i diritti riservati.
+            </div>
 
             {/* Legal Links */}
             <div className="flex space-x-6 text-sm">
-              <Link href="/privacy" className="text-gray-400 hover:text-yellow-400 transition-colors">
+              <Link
+                href="/privacy"
+                className="text-gray-400 hover:text-yellow-400 transition-colors"
+              >
                 Privacy Policy
               </Link>
-              <Link href="/cookie" className="text-gray-400 hover:text-yellow-400 transition-colors">
+              <Link
+                href="/cookie"
+                className="text-gray-400 hover:text-yellow-400 transition-colors"
+              >
                 Cookie Policy
               </Link>
-              <Link href="/termini" className="text-gray-400 hover:text-yellow-400 transition-colors">
+              <Link
+                href="/termini"
+                className="text-gray-400 hover:text-yellow-400 transition-colors"
+              >
                 Termini di Servizio
               </Link>
             </div>
@@ -195,8 +224,8 @@ export default function Footer({ data }: FooterProps) {
             {/* Developer Credit */}
             <div className="text-gray-500 text-sm flex items-center">
               <span className="mr-2">Sviluppato da</span>
-              <Link 
-                href="https://emmanueledurante.com" 
+              <Link
+                href="https://emmanueledurante.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-yellow-400 transition-colors flex items-center"
@@ -209,5 +238,5 @@ export default function Footer({ data }: FooterProps) {
         </motion.div>
       </div>
     </footer>
-  )
+  );
 }

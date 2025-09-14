@@ -22,6 +22,16 @@ export default async function Home() {
   } catch (error) {
     // Fallback to static content if TinaCMS is not available
     console.error('TinaCMS error:', error)
+    // Fallback data in case TinaCMS is not available
+    const fallbackData = {
+      contatti: {
+        phone: '+39 333 123 4567',
+        email: 'info@studiofulminis.it',
+        address: 'Via Roma 123, 20100 Milano (MI)',
+        workingHours: 'Lun-Ven: 9:00 - 18:00'
+      }
+    }
+    
     return (
       <main className="min-h-screen">
         <Hero />
@@ -29,7 +39,7 @@ export default async function Home() {
         <Servizi />
         {/* <Gallery /> */} {/* TEMPORANEAMENTE COMMENTATO - Sezione "I miei progetti" */}
         <Contatti />
-        <Footer />
+        <Footer data={fallbackData} />
       </main>
     )
   }

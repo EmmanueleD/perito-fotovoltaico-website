@@ -36,7 +36,7 @@ export default function TinaProvider({
       {/* <Gallery data={content?.gallery || undefined} /> */}{" "}
       {/* TEMPORANEAMENTE COMMENTATO - Sezione "I miei progetti" */}
       <Contatti data={content?.contatti || undefined} />
-      <Footer />
+      <Footer data={content} />
     </main>
   );
 }

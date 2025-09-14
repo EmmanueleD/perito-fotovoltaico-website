@@ -149,19 +149,11 @@ type HomepageContatti {
   emailButtonText: String!
 }
 
-type HomepageFooter {
-  name: String!
-  title: String!
-  description: JSON!
-  copyright: String!
-}
-
 type Homepage implements Node & Document {
   hero: HomepageHero
   chiSono: HomepageChiSono
   servizi: HomepageServizi
   contatti: HomepageContatti
-  footer: HomepageFooter
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
@@ -246,19 +238,11 @@ input HomepageContattiFilter {
   emailButtonText: StringFilter
 }
 
-input HomepageFooterFilter {
-  name: StringFilter
-  title: StringFilter
-  description: RichTextFilter
-  copyright: StringFilter
-}
-
 input HomepageFilter {
   hero: HomepageHeroFilter
   chiSono: HomepageChiSonoFilter
   servizi: HomepageServiziFilter
   contatti: HomepageContattiFilter
-  footer: HomepageFooterFilter
 }
 
 type HomepageConnectionEdges {
@@ -394,19 +378,11 @@ input HomepageContattiMutation {
   emailButtonText: String
 }
 
-input HomepageFooterMutation {
-  name: String
-  title: String
-  description: JSON
-  copyright: String
-}
-
 input HomepageMutation {
   hero: HomepageHeroMutation
   chiSono: HomepageChiSonoMutation
   servizi: HomepageServiziMutation
   contatti: HomepageContattiMutation
-  footer: HomepageFooterMutation
 }
 
 input PostMutation {
