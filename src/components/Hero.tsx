@@ -90,7 +90,7 @@ export default function Hero({ data }: HeroProps) {
               <TinaMarkdown
                 content={data.description}
                 components={{
-                  p: (props) => (
+                  p: (props: any) => (
                     <p className="text-lg md:text-xl text-gray-700 mb-4">
                       {props.children}
                     </p>
