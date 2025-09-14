@@ -48,8 +48,9 @@ export default function Hero({ data }: HeroProps) {
           <h1 className="text-6xl md:text-8xl font-bold text-gray-800 mb-6 text-center uppercase tracking-wider">
             <span data-tina-field={tinaField(data, "name")}>
               {data?.name || "DANILO"}
-            </span>{" "}
-            <span className="text-blue-800" data-tina-field={tinaField(data, "surname")}>
+            </span>
+            <br />
+            <span data-tina-field={tinaField(data, "surname")}>
               {data?.surname || "FULMINIS"}
             </span>
           </h1>

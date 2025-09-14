@@ -53,10 +53,11 @@ export default function ChiSono({ data }: ChiSonoProps) {
             className="relative"
           >
             <div className="relative w-full h-96 overflow-hidden shadow-lg border border-gray-300" data-tina-field={tinaField(data, "image")}>
-              {data?.image ? (
+              {data?.image || "/IMG_9618.jpeg" ? (
                 <img 
-                  src={data.image} 
-                  alt="Danilo Fulminis" 
+                  src={data?.image || "/IMG_9618.jpeg"} 
+                  alt="Danilo Fulminis - Perito Industriale specializzato in sistemi fotovoltaici e energie rinnovabili" 
+                  data-tina-field={tinaField(data, "image")}
                   className="w-full h-full object-cover"
                 />
               ) : (

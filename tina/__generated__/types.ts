@@ -346,14 +346,28 @@ export type HomepageConnection = Connection & {
 export type Post = Node & Document & {
   __typename?: 'Post';
   title: Scalars['String']['output'];
+  tags?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  date: Scalars['String']['output'];
+  excerpt?: Maybe<Scalars['String']['output']>;
   body?: Maybe<Scalars['JSON']['output']>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
 };
 
+export type DatetimeFilter = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
 export type PostFilter = {
   title?: InputMaybe<StringFilter>;
+  tags?: InputMaybe<StringFilter>;
+  date?: InputMaybe<DatetimeFilter>;
+  excerpt?: InputMaybe<StringFilter>;
   body?: InputMaybe<RichTextFilter>;
 };
 
@@ -511,12 +525,15 @@ export type HomepageMutation = {
 
 export type PostMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
+  tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  date?: InputMaybe<Scalars['String']['input']>;
+  excerpt?: InputMaybe<Scalars['String']['input']>;
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
 export type HomepagePartsFragment = { __typename: 'Homepage', hero?: { __typename: 'HomepageHero', name: string, surname: string, title: string, subtitle: string, description: any, ctaPrimary: string, ctaSecondary: string } | null, chiSono?: { __typename: 'HomepageChiSono', title: string, description: any, image?: string | null } | null, servizi?: { __typename: 'HomepageServizi', title: string, subtitle?: string | null, services?: Array<{ __typename: 'HomepageServiziServices', title: string, description: string, icon?: string | null } | null> | null } | null, gallery?: { __typename: 'HomepageGallery', title: string, subtitle?: string | null, projects?: Array<{ __typename: 'HomepageGalleryProjects', title: string, description?: string | null, image: string, location?: string | null, year?: string | null } | null> | null } | null, doveSono?: { __typename: 'HomepageDoveSono', title: string, address: string, phone?: string | null, email?: string | null, description?: string | null } | null };
 
-export type PostPartsFragment = { __typename: 'Post', title: string, body?: any | null };
+export type PostPartsFragment = { __typename: 'Post', title: string, tags?: Array<string | null> | null, date: string, excerpt?: string | null, body?: any | null };
 
 export type HomepageQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -542,7 +559,7 @@ export type PostQueryVariables = Exact<{
 }>;
 
 
-export type PostQuery = { __typename?: 'Query', post: { __typename: 'Post', id: string, title: string, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type PostQuery = { __typename?: 'Query', post: { __typename: 'Post', id: string, title: string, tags?: Array<string | null> | null, date: string, excerpt?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type PostConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -554,7 +571,7 @@ export type PostConnectionQueryVariables = Exact<{
 }>;
 
 
-export type PostConnectionQuery = { __typename?: 'Query', postConnection: { __typename?: 'PostConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PostConnectionEdges', cursor: string, node?: { __typename: 'Post', id: string, title: string, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type PostConnectionQuery = { __typename?: 'Query', postConnection: { __typename?: 'PostConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PostConnectionEdges', cursor: string, node?: { __typename: 'Post', id: string, title: string, tags?: Array<string | null> | null, date: string, excerpt?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export const HomepagePartsFragmentDoc = gql`
     fragment HomepageParts on Homepage {
@@ -613,6 +630,9 @@ export const PostPartsFragmentDoc = gql`
     fragment PostParts on Post {
   __typename
   title
+  tags
+  date
+  excerpt
   body
 }
     `;
@@ -792,7 +812,7 @@ export const ExperimentalGetTinaClient = () =>
   getSdk(
     generateRequester(
       createClient({
-        url: "https://content.tinajs.io/1.6/content/66cb0674-8cab-41ce-bc1a-b96ed6911276/github/main",
+        url: "http://localhost:4001/graphql",
         queries,
       })
     )

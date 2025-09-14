@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Menu, X, Sun } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -72,6 +73,12 @@ export default function Header() {
             >
               Gallery
             </button>
+            <Link
+              href="/blog"
+              className="text-gray-700 hover:text-blue-800 transition-colors duration-200 font-medium"
+            >
+              Articoli
+            </Link>
             <button
               onClick={() => scrollToSection('dove-sono')}
               className="text-gray-700 hover:text-blue-800 transition-colors duration-200 font-medium"
@@ -133,6 +140,12 @@ export default function Header() {
               >
                 Gallery
               </button>
+              <Link
+                href="/blog"
+                className="text-left text-gray-700 hover:text-blue-800 transition-colors duration-200 font-medium py-2"
+              >
+                Articoli
+              </Link>
               <button
                 onClick={() => scrollToSection('dove-sono')}
                 className="text-left text-gray-700 hover:text-blue-800 transition-colors duration-200 font-medium py-2"

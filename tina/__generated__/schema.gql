@@ -242,14 +242,28 @@ type HomepageConnection implements Connection {
 
 type Post implements Node & Document {
   title: String!
+  tags: [String]
+  date: String!
+  excerpt: String
   body: JSON
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
 }
 
+input DatetimeFilter {
+  after: String
+  before: String
+  eq: String
+  exists: Boolean
+  in: [String]
+}
+
 input PostFilter {
   title: StringFilter
+  tags: StringFilter
+  date: DatetimeFilter
+  excerpt: StringFilter
   body: RichTextFilter
 }
 
@@ -347,6 +361,9 @@ input HomepageMutation {
 
 input PostMutation {
   title: String
+  tags: [String]
+  date: String
+  excerpt: String
   body: JSON
 }
 

@@ -53,5 +53,8 @@ fragment HomepageParts on Homepage {
 fragment PostParts on Post {
   __typename
   title
+  tags
+  date
+  excerpt
   body
 }

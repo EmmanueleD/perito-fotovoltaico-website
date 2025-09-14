@@ -267,6 +267,30 @@ export default defineConfig({
             required: true
           },
           {
+            type: "string",
+            name: "tags",
+            label: "Tag",
+            list: true,
+            ui: {
+              component: "tags"
+            }
+          },
+          {
+            type: "datetime",
+            name: "date",
+            label: "Data Pubblicazione",
+            required: true
+          },
+          {
+            type: "string",
+            name: "excerpt",
+            label: "Riassunto",
+            description: "Breve descrizione dell'articolo (max 200 caratteri)",
+            ui: {
+              component: "textarea"
+            }
+          },
+          {
             type: "rich-text",
             name: "body",
             label: "Body",

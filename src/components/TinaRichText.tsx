@@ -31,6 +31,7 @@ export default function TinaRichText({ content, className = '' }: TinaRichTextPr
         
         :global(.prose p) {
           margin: 1rem 0 !important;
+          color: #1F2937 !important; /* Gray-800 per il testo principale */
         }
         
         :global(.prose strong) {

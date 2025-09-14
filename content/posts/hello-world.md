@@ -1,5 +1,12 @@
 ---
-title: Hello, World!
+title: Hello World
+tags:
+  - Progettazione
+  - Energie Rinnovabili
+date: 2024-01-05T00:00:00.000Z
+excerpt: >-
+  Il primo articolo del nostro blog dedicato al fotovoltaico e alle energie
+  rinnovabili.
 ---
 
 ## Hello World!

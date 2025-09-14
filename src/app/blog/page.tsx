@@ -3,67 +3,39 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Calendar, Clock, ArrowRight } from 'lucide-react'
+import { client } from '../../../tina/__generated__/client'
+import { useState, useEffect } from 'react'
 
 export default function BlogPage() {
-  // Questi dati verranno gestiti da TinaCMS
-  const blogPosts = [
-    {
-      slug: 'vantaggi-fotovoltaico-2024',
-      title: 'I Vantaggi del Fotovoltaico nel 2024: Incentivi e Opportunità',
-      excerpt: 'Scopri tutti i vantaggi economici e ambientali dell\'installazione di un impianto fotovoltaico nel 2024, inclusi gli ultimi incentivi statali.',
-      date: '2024-01-15',
-      readTime: '5 min',
-      category: 'Incentivi',
-      image: '/api/placeholder/400/250'
-    },
-    {
-      slug: 'manutenzione-pannelli-solari',
-      title: 'Come Mantenere Efficiente il Tuo Impianto Fotovoltaico',
-      excerpt: 'Guida completa alla manutenzione dei pannelli solari per garantire sempre la massima efficienza e durata nel tempo.',
-      date: '2024-01-08',
-      readTime: '7 min',
-      category: 'Manutenzione',
-      image: '/api/placeholder/400/250'
-    },
-    {
-      slug: 'dimensionamento-impianto-fotovoltaico',
-      title: 'Come Dimensionare Correttamente un Impianto Fotovoltaico',
-      excerpt: 'Tutti i fattori da considerare per calcolare la potenza ottimale del tuo impianto fotovoltaico in base ai consumi.',
-      date: '2024-01-01',
-      readTime: '6 min',
-      category: 'Progettazione',
-      image: '/api/placeholder/400/250'
-    },
-    {
-      slug: 'batterie-accumulo-guida',
-      title: 'Batterie di Accumulo: Guida alla Scelta',
-      excerpt: 'Come scegliere le batterie di accumulo più adatte al tuo impianto fotovoltaico per massimizzare l\'autoconsumo.',
-      date: '2023-12-20',
-      readTime: '8 min',
-      category: 'Tecnologia',
-      image: '/api/placeholder/400/250'
-    },
-    {
-      slug: 'normative-fotovoltaico-lombardia',
-      title: 'Normative e Permessi per il Fotovoltaico in Lombardia',
-      excerpt: 'Tutto quello che devi sapere su permessi, normative e procedure burocratiche per installare un impianto fotovoltaico in Lombardia.',
-      date: '2023-12-15',
-      readTime: '4 min',
-      category: 'Normative',
-      image: '/api/placeholder/400/250'
-    },
-    {
-      slug: 'futuro-energia-solare',
-      title: 'Il Futuro dell\'Energia Solare: Tendenze e Innovazioni',
-      excerpt: 'Le ultime innovazioni tecnologiche nel settore fotovoltaico e le tendenze che definiranno il futuro dell\'energia solare.',
-      date: '2023-12-10',
-      readTime: '6 min',
-      category: 'Innovazione',
-      image: '/api/placeholder/400/250'
-    }
-  ]
+  const [posts, setPosts] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
+  const [selectedCategory, setSelectedCategory] = useState('Tutti')
 
-  const categories = ['Tutti', 'Incentivi', 'Manutenzione', 'Progettazione', 'Tecnologia', 'Normative', 'Innovazione']
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await client.queries.postConnection()
+        setPosts(response.data.postConnection.edges || [])
+      } catch (error) {
+        console.error('Errore nel caricamento dei posts:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchPosts()
+  }, [])
+
+  // Logica filtro per tag multipli
+  const filteredPosts = selectedCategory === 'Tutti' 
+    ? posts 
+    : posts.filter(post => 
+        post.node.tags && post.node.tags.includes(selectedCategory)
+      )
+
+  // Tag unici dai posts
+  const allTags = posts.flatMap(post => post.node.tags || [])
+  const categories = ['Tutti', ...new Set(allTags.filter(Boolean))]
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -77,7 +49,7 @@ export default function BlogPage() {
             className="text-center max-w-4xl mx-auto"
           >
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-              Blog
+              Articoli
             </h1>
             <p className="text-xl text-gray-600 leading-relaxed">
               Approfondimenti, guide e novità dal mondo del fotovoltaico. 
@@ -97,9 +69,10 @@ export default function BlogPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
+                onClick={() => setSelectedCategory(category)}
                 className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
-                  category === 'Tutti' 
-                    ? 'bg-gray-800 text-white' 
+                  category === selectedCategory 
+                    ? 'bg-blue-800 text-white' 
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -186,17 +159,102 @@ export default function BlogPage() {
       </section>
       */}
 
-      {/* Messaggio temporaneo per indicare che la sezione è in sviluppo */}
+      {/* Blog Posts */}
       <section className="py-16">
         <div className="container mx-auto px-6">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Sezione in Sviluppo
-            </h2>
-            <p className="text-gray-600 text-lg">
-              Gli articoli del blog saranno disponibili a breve. Torna presto per scoprire i nostri contenuti!
-            </p>
-          </div>
+          {loading ? (
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-800 mx-auto"></div>
+              <p className="mt-4 text-gray-600">Caricamento articoli...</p>
+            </div>
+          ) : filteredPosts.length > 0 ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredPosts.map((post: any, index: number) => (
+                <motion.article
+                  key={post.node._sys.filename}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                >
+                  <div className="aspect-[16/10] bg-gradient-to-br from-blue-100 to-green-100 flex items-center justify-center">
+                    <div className="text-center p-6">
+                      <div className="w-16 h-16 bg-yellow-400 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span className="text-2xl">📝</span>
+                      </div>
+                      <p className="text-gray-600 font-medium">Articolo</p>
+                    </div>
+                  </div>
+
+                  <div className="p-6">
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {post.node.tags && post.node.tags.length > 0 ? (
+                        post.node.tags.map((tag: string, index: number) => (
+                          <span 
+                            key={index}
+                            className="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-full"
+                          >
+                            {tag}
+                          </span>
+                        ))
+                      ) : (
+                        <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
+                          Articolo
+                        </span>
+                      )}
+                    </div>
+
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                      {post.node.title}
+                    </h3>
+
+                    <p className="text-gray-800 mb-4 line-clamp-3">
+                      {post.node.excerpt || 
+                        (post.node.body ? 
+                          (typeof post.node.body === 'string' ? 
+                            post.node.body.substring(0, 150) + '...' : 
+                            'Leggi l\'articolo completo...'
+                          ) : 
+                          'Leggi l\'articolo completo...'
+                        )
+                      }
+                    </p>
+
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center text-gray-500 text-sm">
+                        <Calendar className="w-4 h-4 mr-1" />
+                        {post.node.date ? 
+                          new Date(post.node.date).toLocaleDateString('it-IT') : 
+                          new Date().toLocaleDateString('it-IT')
+                        }
+                      </div>
+                      
+                      <Link 
+                        href={`/blog/${post.node._sys.filename}`}
+                        className="flex items-center text-blue-800 hover:text-blue-900 font-medium text-sm transition-colors"
+                      >
+                        Leggi tutto
+                        <ArrowRight className="w-4 h-4 ml-1" />
+                      </Link>
+                    </div>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                {selectedCategory === 'Tutti' ? 'Nessun Articolo Disponibile' : `Nessun Articolo in "${selectedCategory}"`}
+              </h2>
+              <p className="text-gray-600 text-lg">
+                {selectedCategory === 'Tutti' 
+                  ? 'Non ci sono ancora articoli pubblicati. Torna presto per scoprire i nostri contenuti!'
+                  : `Non ci sono articoli nella categoria "${selectedCategory}". Prova a selezionare una categoria diversa.`
+                }
+              </p>
+            </div>
+          )}
         </div>
       </section>
     </div>
