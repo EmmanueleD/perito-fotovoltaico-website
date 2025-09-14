@@ -178,13 +178,23 @@ export default function BlogPage() {
                   viewport={{ once: true }}
                   className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
                 >
-                  <div className="aspect-[16/10] bg-gradient-to-br from-blue-100 to-green-100 flex items-center justify-center">
-                    <div className="text-center p-6">
-                      <div className="w-16 h-16 bg-yellow-400 rounded-full mx-auto mb-4 flex items-center justify-center">
-                        <span className="text-2xl">📝</span>
+                  <div className="aspect-[16/10] overflow-hidden">
+                    {post.node.coverImage ? (
+                      <img 
+                        src={post.node.coverImage} 
+                        alt={post.node.title}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-blue-100 to-green-100 flex items-center justify-center">
+                        <div className="text-center p-6">
+                          <div className="w-16 h-16 bg-yellow-400 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <span className="text-2xl">📝</span>
+                          </div>
+                          <p className="text-gray-600 font-medium">Articolo</p>
+                        </div>
                       </div>
-                      <p className="text-gray-600 font-medium">Articolo</p>
-                    </div>
+                    )}
                   </div>
 
                   <div className="p-6">

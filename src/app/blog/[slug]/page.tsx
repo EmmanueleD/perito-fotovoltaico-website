@@ -101,6 +101,16 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
               Torna agli articoli
             </Link>
 
+            {post.coverImage && (
+              <div className="aspect-[16/9] mb-8 rounded-2xl overflow-hidden shadow-lg">
+                <img 
+                  src={post.coverImage} 
+                  alt={post.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            )}
+
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
               {post.title}
             </h1>

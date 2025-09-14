@@ -291,6 +291,12 @@ export default defineConfig({
             }
           },
           {
+            type: "image",
+            name: "coverImage",
+            label: "Immagine di Copertina",
+            description: "Immagine principale dell'articolo (opzionale)"
+          },
+          {
             type: "rich-text",
             name: "body",
             label: "Body",
