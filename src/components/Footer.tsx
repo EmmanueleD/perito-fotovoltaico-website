@@ -3,25 +3,52 @@
 import { motion } from 'framer-motion'
 import { Sun, Mail, Phone, MapPin, ExternalLink } from 'lucide-react'
 import Link from 'next/link'
+import { tinaField } from 'tinacms/dist/react'
+import { TinaMarkdown } from 'tinacms/dist/rich-text'
 
-export default function Footer() {
+interface FooterData {
+  name: string
+  title: string
+  description: any
+  copyright: string
+  [key: string]: any
+}
+
+interface FooterProps {
+  data?: {
+    footer: FooterData
+    contatti?: {
+      phone?: string
+      email?: string
+      address?: string
+    }
+  }
+}
+
+const quickLinks = [
+  { name: 'Chi Sono', href: '#chi-sono' },
+  { name: 'Servizi', href: '#servizi' },
+  { name: 'Gallery', href: '#gallery' },
+  { name: 'Contatti', href: '#contatti' },
+  { name: 'Blog', href: '/blog' }
+]
+
+export default function Footer({ data }: FooterProps) {
   const currentYear = new Date().getFullYear()
-
-  const quickLinks = [
-    { name: 'Chi Sono', href: '#chi-sono' },
-    { name: 'Servizi', href: '#servizi' },
-    { name: 'Gallery', href: '#gallery' },
-    { name: 'Dove Sono', href: '#dove-sono' },
-    { name: 'Blog', href: '/blog' }
-  ]
-
-  const services = [
-    'Progettazione Fotovoltaico',
-    'Installazione Pannelli',
-    'Manutenzione Impianti',
-    'Pratiche Burocratiche',
-    'Consulenza Energetica'
-  ]
+  
+  // Default values in case data is not available
+  const footerData = data?.footer || {
+    name: 'Danilo Fulminis',
+    title: 'Perito Industriale',
+    description: 'Specializzato nella progettazione e installazione di sistemi fotovoltaici. Il tuo partner per l\'indipendenza energetica e un futuro sostenibile.',
+    copyright: `© ${currentYear} Danilo Fulminis. Tutti i diritti riservati.`
+  }
+  
+  const contactData = data?.contatti || {
+    phone: '+39 333 123 4567',
+    email: 'info@studiofulminis.it',
+    address: 'Via Roma 123, 20100 Milano (MI)'
+  }
 
   return (
     <footer className="bg-gray-900 text-white">
@@ -40,29 +67,51 @@ export default function Footer() {
                 <Sun className="w-8 h-8 text-white" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold">Danilo Fulminis</h3>
-                <p className="text-gray-400">Perito Industriale</p>
+                <h3 
+                  className="text-2xl font-bold"
+                  data-tina-field={tinaField(footerData, 'name')}
+                >
+                  {footerData.name}
+                </h3>
+                <p 
+                  className="text-gray-400"
+                  data-tina-field={tinaField(footerData, 'title')}
+                >
+                  {footerData.title}
+                </p>
               </div>
             </div>
             
-            <p className="text-gray-300 mb-6 leading-relaxed max-w-md">
-              Specializzato nella progettazione e installazione di sistemi fotovoltaici. 
-              Il tuo partner per l'indipendenza energetica e un futuro sostenibile.
-            </p>
+            <div 
+              className="text-gray-300 mb-6 leading-relaxed max-w-md"
+              data-tina-field={tinaField(footerData, 'description')}
+            >
+              <TinaMarkdown content={footerData.description} />
+            </div>
 
             {/* Contact Info */}
             <div className="space-y-3">
               <div className="flex items-center text-gray-300">
-                <Phone className="w-5 h-5 mr-3 text-yellow-400" />
-                <span>+39 333 123 4567</span>
+                <Phone className="w-5 h-5 mr-3 text-yellow-400 flex-shrink-0" />
+                <span data-tina-field={tinaField(contactData, 'phone')}>
+                  {contactData.phone}
+                </span>
               </div>
               <div className="flex items-center text-gray-300">
-                <Mail className="w-5 h-5 mr-3 text-yellow-400" />
-                <span>info@studiofulminis.it</span>
+                <Mail className="w-5 h-5 mr-3 text-yellow-400 flex-shrink-0" />
+                <a 
+                  href={`mailto:${contactData.email}`}
+                  className="hover:text-yellow-400 transition-colors"
+                  data-tina-field={tinaField(contactData, 'email')}
+                >
+                  {contactData.email}
+                </a>
               </div>
-              <div className="flex items-center text-gray-300">
-                <MapPin className="w-5 h-5 mr-3 text-yellow-400" />
-                <span>Via Roma 123, 20100 Milano (MI)</span>
+              <div className="flex items-start text-gray-300">
+                <MapPin className="w-5 h-5 mr-3 text-yellow-400 mt-0.5 flex-shrink-0" />
+                <span data-tina-field={tinaField(contactData, 'address')}>
+                  {contactData.address}
+                </span>
               </div>
             </div>
           </motion.div>
@@ -98,7 +147,13 @@ export default function Footer() {
           >
             <h4 className="text-xl font-bold mb-6">Servizi</h4>
             <ul className="space-y-3">
-              {services.map((service, index) => (
+              {[
+                'Progettazione Fotovoltaico',
+                'Installazione Pannelli',
+                'Manutenzione Impianti',
+                'Pratiche Burocratiche',
+                'Consulenza Energetica'
+              ].map((service: string, index: number) => (
                 <li key={index} className="text-gray-300 text-sm">
                   {service}
                 </li>
@@ -117,9 +172,12 @@ export default function Footer() {
         >
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             {/* Copyright */}
-            <div className="text-gray-400 text-sm">
-              © {currentYear} Danilo Fulminis. Tutti i diritti riservati.
-            </div>
+            <p 
+              className="text-center text-gray-400 text-sm"
+              data-tina-field={tinaField(footerData, 'copyright')}
+            >
+              {footerData.copyright || `© ${currentYear} Danilo Fulminis. Tutti i diritti riservati.`}
+            </p>
 
             {/* Legal Links */}
             <div className="flex space-x-6 text-sm">

@@ -1,9 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, Sun, Zap } from "lucide-react";
-import TinaRichText from "./TinaRichText";
+import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { tinaField } from "tinacms/dist/react";
+import { Sun } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 interface HeroData {
   name: string;
@@ -14,6 +16,7 @@ interface HeroData {
   ctaPrimary: string;
   ctaSecondary: string;
   scrollText: string;
+  heroIcon: string;
   [key: string]: any;
 }
 
@@ -35,12 +38,21 @@ export default function Hero({ data }: HeroProps) {
           className="max-w-4xl mx-auto"
         >
           {/* Icons */}
-          <div className="flex justify-center space-x-4 mb-8">
-            <div className="p-4 bg-white border-2 border-blue-800 shadow-lg">
-              <Sun className="w-10 h-10 text-blue-800" />
-            </div>
-            <div className="p-4 bg-white border-2 border-green-500 shadow-lg">
-              <Zap className="w-10 h-10 text-green-500" />
+          <div className="flex justify-center gap-4 mb-12">
+            <div className="p-6 bg-white border-2 border-blue-800 shadow-lg">
+              {data?.heroIcon ? (
+                <div data-tina-field={tinaField(data, 'heroIcon')} className="w-20 h-20 flex items-center justify-center">
+                  <Image 
+                    src={data.heroIcon} 
+                    alt="" 
+                    width={80} 
+                    height={80} 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              ) : (
+                <Sun className="w-20 h-20 text-blue-800" />
+              )}
             </div>
           </div>
 
@@ -56,19 +68,34 @@ export default function Hero({ data }: HeroProps) {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-2xl md:text-3xl text-blue-800 mb-4 text-center font-bold uppercase tracking-wide" data-tina-field={tinaField(data, "title")}>
+          <p
+            className="text-2xl md:text-3xl text-blue-800 mb-4 text-center font-bold uppercase tracking-wide"
+            data-tina-field={tinaField(data, "title")}
+          >
             {data?.title || "PERITO INDUSTRIALE"}
           </p>
-          <p className="text-xl md:text-2xl text-gray-600 mb-12 text-center font-semibold uppercase tracking-wide" data-tina-field={tinaField(data, "subtitle")}>
+          <p
+            className="text-xl md:text-2xl text-gray-600 mb-12 text-center font-semibold uppercase tracking-wide"
+            data-tina-field={tinaField(data, "subtitle")}
+          >
             {data?.subtitle || "SPECIALISTA IN SISTEMI FOTOVOLTAICI"}
           </p>
 
           {/* Description */}
-          <div className="text-lg md:text-xl text-gray-700 mb-12 text-center max-w-4xl mx-auto leading-relaxed" data-tina-field={tinaField(data, "description")}>
+          <div
+            className="text-lg md:text-xl text-gray-700 mb-12 text-center max-w-4xl mx-auto leading-relaxed"
+            data-tina-field={tinaField(data, "description")}
+          >
             {data?.description ? (
-              <TinaRichText
+              <TinaMarkdown
                 content={data.description}
-                className="text-center"
+                components={{
+                  p: (props) => (
+                    <p className="text-lg md:text-xl text-gray-700 mb-4">
+                      {props.children}
+                    </p>
+                  ),
+                }}
               />
             ) : (
               <p>
@@ -92,37 +119,28 @@ export default function Hero({ data }: HeroProps) {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-blue-800 hover:bg-blue-900 text-white px-10 py-5 text-xl font-bold transition-all shadow-lg"
-              data-tina-field={tinaField(data, "ctaPrimary")}
-            >
-              {data?.ctaPrimary || "SCOPRI I MIEI SERVIZI"}
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="border-2 border-gray-600 text-gray-600 hover:bg-gray-600 hover:text-white px-10 py-5 text-xl font-bold transition-all shadow-lg"
-              data-tina-field={tinaField(data, "ctaSecondary")}
-            >
-              {data?.ctaSecondary || "CONTATTAMI"}
-            </motion.button>
+            <Link href="#servizi" passHref>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-blue-800 hover:bg-blue-900 text-white px-10 py-5 text-xl font-bold transition-all shadow-lg"
+                data-tina-field={tinaField(data, "ctaPrimary")}
+              >
+                {data?.ctaPrimary || "SCOPRI I MIEI SERVIZI"}
+              </motion.button>
+            </Link>
+            <Link href="#contatti" passHref>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="border-2 border-gray-600 text-gray-600 hover:bg-gray-600 hover:text-white px-10 py-5 text-xl font-bold transition-all shadow-lg"
+                data-tina-field={tinaField(data, "ctaSecondary")}
+              >
+                {data?.ctaSecondary || "CONTATTAMI"}
+              </motion.button>
+            </Link>
           </div>
         </motion.div>
-
-        {/* Scroll indicator */}
-        {/* <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 0.8 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        >
-          <div className="flex flex-col items-center text-yellow-500">
-            <span className="text-lg mb-2 font-bold">SCOPRI DI PIÙ</span>
-            <ArrowDown className="w-8 h-8 animate-bounce" />
-          </div>
-        </motion.div> */}
       </div>
     </section>
   );

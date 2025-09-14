@@ -1,29 +1,4 @@
 {
-  "hero": {
-    "name": "Studio",
-    "surname": "FULMINIS",
-    "title": "Ingegneria industriale ",
-    "subtitle": "Progettazione e consulenza impianti elettrici, energie rinnovabili, soluzioni energetiche integrate",
-    "description": "",
-    "ctaPrimary": "SCOPRI I MIEI SERVIZI",
-    "ctaSecondary": "CONTATTAMI"
-  },
-  "chiSono": {
-    "title": "Chi Sono",
-    "description": "",
-    "image": "/IMG_9618.jpeg"
-  },
-  "servizi": {
-    "title": "I Miei Servizi",
-    "subtitle": "PROGETTAZIONE ELETTRICA, CONSULENZA, ENERGIE RINNOVABILI, PRATICHE FOTOVOLTAICHE. NON SOLO, LO STUDIO TECNICO FULMINIS SI OCCUPA ANCHE DI DIREZIONE LAVORI, VANTANDO ESPERIENZA OPERATIVA SUL CAMPO... OLTRE CHE A TANTA PASSIONE",
-    "services": [
-      {
-        "title": "Progettazione Impianti",
-        "description": "Progettazione tecnica completa di sistemi fotovoltaici su misura per le tue esigenze energetiche.",
-        "icon": "/IMG_9618.jpeg"
-      }
-    ]
-  },
   "gallery": {
     "title": "I Miei Progetti",
     "subtitle": "Alcuni dei lavori realizzati",
@@ -51,11 +26,71 @@
       }
     ]
   },
-  "doveSono": {
-    "title": "Dove Sono",
-    "address": "Via Violone, 264 Cesena FC •  Via Buffolara 57/b Parma",
-    "phone": "+39 351 4804500",
+  "hero": {
+    "name": "Studio",
+    "surname": "FULMINIS",
+    "title": "Ingegneria industriale ",
+    "subtitle": "Progettazione e consulenza impianti elettrici, energie rinnovabili, soluzioni energetiche integrate",
+    "description": "",
+    "ctaPrimary": "SCOPRI I MIEI SERVIZI",
+    "ctaSecondary": "CONTATTAMI",
+    "heroIcon": "/images/logo.png"
+  },
+  "chiSono": {
+    "title": "Chi Sono",
+    "description": "",
+    "image": "/IMG_9618.jpeg"
+  },
+  "servizi": {
+    "title": "I Miei Servizi",
+    "subtitle": "PROGETTAZIONE ELETTRICA, CONSULENZA, ENERGIE RINNOVABILI, PRATICHE FOTOVOLTAICHE. NON SOLO, LO STUDIO TECNICO FULMINIS SI OCCUPA ANCHE DI DIREZIONE LAVORI, VANTANDO ESPERIENZA OPERATIVA SUL CAMPO... OLTRE CHE A TANTA PASSIONE",
+    "services": [
+      {
+        "title": "Progettazione Impianti",
+        "description": "Progettazione tecnica completa di sistemi fotovoltaici su misura per le tue esigenze energetiche.",
+        "icon": "/IMG_9618.jpeg"
+      }
+    ]
+  },
+  "contatti": {
+    "title": "Contattaci",
+    "description": "Siamo qui per rispondere alle tue domande e fornirti le soluzioni migliori per le tue esigenze energetiche.",
+    "address": "Via Cia degli Ordelaffi, 8, 47521 Cesena FC",
+    "phone": "+39 123 456 7890",
     "email": "info@studiofulminis.it",
-    "description": "Lo studio Fulminis è presente su due sedi, a Cesena in via Violone 264 e Parma in via Buffolara 57/b"
+    "workingHours": "Lun-Ven: 9:00 - 18:00",
+    "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11858.02992042182!2d12.23969471557754!3d44.1385098875493!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132ca4c72441c673%3A0xa9c91aa75fd5cbb5!2sRocca%20Malatestiana!5e1!3m2!1sit!2sit!4v1757870847736!5m2!1sit!2sit",
+    "zonesTitle": "Zone di Intervento",
+    "zonesDescription": "Offro i miei servizi in tutta la Lombardia con particolare focus su:",
+    "zonesList": [
+      {
+        "name": "Cesena e provincia"
+      },
+      {
+        "name": "Bergamo e provincia"
+      },
+      {
+        "name": "Brescia e provincia"
+      },
+      {
+        "name": "Como e provincia"
+      },
+      {
+        "name": "Varese e provincia"
+      },
+      {
+        "name": "Lecco e provincia"
+      },
+      {
+        "name": "Monza e Brianza"
+      },
+      {
+        "name": "Pavia e provincia"
+      }
+    ],
+    "appointmentTitle": "Prenota una consulenza",
+    "appointmentDescription": "Contattami per fissare un appuntamento gratuito e senza impegno per valutare la soluzione migliore per le tue esigenze energetiche.",
+    "callButtonText": "Chiama ora",
+    "emailButtonText": "Invia email"
   }
 }

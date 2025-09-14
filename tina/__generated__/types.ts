@@ -192,6 +192,14 @@ export type HomepageHero = {
   description: Scalars['JSON']['output'];
   ctaPrimary: Scalars['String']['output'];
   ctaSecondary: Scalars['String']['output'];
+  heroIcon?: Maybe<Scalars['String']['output']>;
+};
+
+export type HomepageChiSonoFeatures = {
+  __typename?: 'HomepageChiSonoFeatures';
+  title: Scalars['String']['output'];
+  description: Scalars['String']['output'];
+  icon?: Maybe<Scalars['String']['output']>;
 };
 
 export type HomepageChiSono = {
@@ -199,45 +207,54 @@ export type HomepageChiSono = {
   title: Scalars['String']['output'];
   description: Scalars['JSON']['output'];
   image?: Maybe<Scalars['String']['output']>;
+  features?: Maybe<Array<Maybe<HomepageChiSonoFeatures>>>;
 };
 
 export type HomepageServiziServices = {
   __typename?: 'HomepageServiziServices';
   title: Scalars['String']['output'];
   description: Scalars['String']['output'];
-  icon?: Maybe<Scalars['String']['output']>;
+  icon: Scalars['String']['output'];
+  features?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
 };
 
 export type HomepageServizi = {
   __typename?: 'HomepageServizi';
   title: Scalars['String']['output'];
   subtitle?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['JSON']['output']>;
   services?: Maybe<Array<Maybe<HomepageServiziServices>>>;
 };
 
-export type HomepageGalleryProjects = {
-  __typename?: 'HomepageGalleryProjects';
-  title: Scalars['String']['output'];
-  description?: Maybe<Scalars['String']['output']>;
-  image: Scalars['String']['output'];
-  location?: Maybe<Scalars['String']['output']>;
-  year?: Maybe<Scalars['String']['output']>;
+export type HomepageContattiZonesList = {
+  __typename?: 'HomepageContattiZonesList';
+  name: Scalars['String']['output'];
 };
 
-export type HomepageGallery = {
-  __typename?: 'HomepageGallery';
+export type HomepageContatti = {
+  __typename?: 'HomepageContatti';
   title: Scalars['String']['output'];
-  subtitle?: Maybe<Scalars['String']['output']>;
-  projects?: Maybe<Array<Maybe<HomepageGalleryProjects>>>;
-};
-
-export type HomepageDoveSono = {
-  __typename?: 'HomepageDoveSono';
-  title: Scalars['String']['output'];
+  description: Scalars['String']['output'];
   address: Scalars['String']['output'];
-  phone?: Maybe<Scalars['String']['output']>;
-  email?: Maybe<Scalars['String']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
+  phone: Scalars['String']['output'];
+  email: Scalars['String']['output'];
+  workingHours: Scalars['String']['output'];
+  mapUrl: Scalars['String']['output'];
+  zonesTitle: Scalars['String']['output'];
+  zonesDescription: Scalars['String']['output'];
+  zonesList?: Maybe<Array<Maybe<HomepageContattiZonesList>>>;
+  appointmentTitle: Scalars['String']['output'];
+  appointmentDescription: Scalars['String']['output'];
+  callButtonText: Scalars['String']['output'];
+  emailButtonText: Scalars['String']['output'];
+};
+
+export type HomepageFooter = {
+  __typename?: 'HomepageFooter';
+  name: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+  description: Scalars['JSON']['output'];
+  copyright: Scalars['String']['output'];
 };
 
 export type Homepage = Node & Document & {
@@ -245,8 +262,8 @@ export type Homepage = Node & Document & {
   hero?: Maybe<HomepageHero>;
   chiSono?: Maybe<HomepageChiSono>;
   servizi?: Maybe<HomepageServizi>;
-  gallery?: Maybe<HomepageGallery>;
-  doveSono?: Maybe<HomepageDoveSono>;
+  contatti?: Maybe<HomepageContatti>;
+  footer?: Maybe<HomepageFooter>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
@@ -265,6 +282,13 @@ export type RichTextFilter = {
   exists?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+export type ImageFilter = {
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
 export type HomepageHeroFilter = {
   name?: InputMaybe<StringFilter>;
   surname?: InputMaybe<StringFilter>;
@@ -273,61 +297,70 @@ export type HomepageHeroFilter = {
   description?: InputMaybe<RichTextFilter>;
   ctaPrimary?: InputMaybe<StringFilter>;
   ctaSecondary?: InputMaybe<StringFilter>;
+  heroIcon?: InputMaybe<ImageFilter>;
 };
 
-export type ImageFilter = {
-  startsWith?: InputMaybe<Scalars['String']['input']>;
-  eq?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+export type HomepageChiSonoFeaturesFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  icon?: InputMaybe<StringFilter>;
 };
 
 export type HomepageChiSonoFilter = {
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<RichTextFilter>;
   image?: InputMaybe<ImageFilter>;
+  features?: InputMaybe<HomepageChiSonoFeaturesFilter>;
 };
 
 export type HomepageServiziServicesFilter = {
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
-  icon?: InputMaybe<ImageFilter>;
+  icon?: InputMaybe<StringFilter>;
+  features?: InputMaybe<StringFilter>;
 };
 
 export type HomepageServiziFilter = {
   title?: InputMaybe<StringFilter>;
   subtitle?: InputMaybe<StringFilter>;
+  description?: InputMaybe<RichTextFilter>;
   services?: InputMaybe<HomepageServiziServicesFilter>;
 };
 
-export type HomepageGalleryProjectsFilter = {
+export type HomepageContattiZonesListFilter = {
+  name?: InputMaybe<StringFilter>;
+};
+
+export type HomepageContattiFilter = {
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
-  location?: InputMaybe<StringFilter>;
-  year?: InputMaybe<StringFilter>;
-};
-
-export type HomepageGalleryFilter = {
-  title?: InputMaybe<StringFilter>;
-  subtitle?: InputMaybe<StringFilter>;
-  projects?: InputMaybe<HomepageGalleryProjectsFilter>;
-};
-
-export type HomepageDoveSonoFilter = {
-  title?: InputMaybe<StringFilter>;
   address?: InputMaybe<StringFilter>;
   phone?: InputMaybe<StringFilter>;
   email?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
+  workingHours?: InputMaybe<StringFilter>;
+  mapUrl?: InputMaybe<StringFilter>;
+  zonesTitle?: InputMaybe<StringFilter>;
+  zonesDescription?: InputMaybe<StringFilter>;
+  zonesList?: InputMaybe<HomepageContattiZonesListFilter>;
+  appointmentTitle?: InputMaybe<StringFilter>;
+  appointmentDescription?: InputMaybe<StringFilter>;
+  callButtonText?: InputMaybe<StringFilter>;
+  emailButtonText?: InputMaybe<StringFilter>;
+};
+
+export type HomepageFooterFilter = {
+  name?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<RichTextFilter>;
+  copyright?: InputMaybe<StringFilter>;
 };
 
 export type HomepageFilter = {
   hero?: InputMaybe<HomepageHeroFilter>;
   chiSono?: InputMaybe<HomepageChiSonoFilter>;
   servizi?: InputMaybe<HomepageServiziFilter>;
-  gallery?: InputMaybe<HomepageGalleryFilter>;
-  doveSono?: InputMaybe<HomepageDoveSonoFilter>;
+  contatti?: InputMaybe<HomepageContattiFilter>;
+  footer?: InputMaybe<HomepageFooterFilter>;
 };
 
 export type HomepageConnectionEdges = {
@@ -475,54 +508,70 @@ export type HomepageHeroMutation = {
   description?: InputMaybe<Scalars['JSON']['input']>;
   ctaPrimary?: InputMaybe<Scalars['String']['input']>;
   ctaSecondary?: InputMaybe<Scalars['String']['input']>;
+  heroIcon?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type HomepageChiSonoFeaturesMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  icon?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type HomepageChiSonoMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['JSON']['input']>;
   image?: InputMaybe<Scalars['String']['input']>;
+  features?: InputMaybe<Array<InputMaybe<HomepageChiSonoFeaturesMutation>>>;
 };
 
 export type HomepageServiziServicesMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   icon?: InputMaybe<Scalars['String']['input']>;
+  features?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type HomepageServiziMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   subtitle?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['JSON']['input']>;
   services?: InputMaybe<Array<InputMaybe<HomepageServiziServicesMutation>>>;
 };
 
-export type HomepageGalleryProjectsMutation = {
+export type HomepageContattiZonesListMutation = {
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type HomepageContattiMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-  location?: InputMaybe<Scalars['String']['input']>;
-  year?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type HomepageGalleryMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  subtitle?: InputMaybe<Scalars['String']['input']>;
-  projects?: InputMaybe<Array<InputMaybe<HomepageGalleryProjectsMutation>>>;
-};
-
-export type HomepageDoveSonoMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
   address?: InputMaybe<Scalars['String']['input']>;
   phone?: InputMaybe<Scalars['String']['input']>;
   email?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
+  workingHours?: InputMaybe<Scalars['String']['input']>;
+  mapUrl?: InputMaybe<Scalars['String']['input']>;
+  zonesTitle?: InputMaybe<Scalars['String']['input']>;
+  zonesDescription?: InputMaybe<Scalars['String']['input']>;
+  zonesList?: InputMaybe<Array<InputMaybe<HomepageContattiZonesListMutation>>>;
+  appointmentTitle?: InputMaybe<Scalars['String']['input']>;
+  appointmentDescription?: InputMaybe<Scalars['String']['input']>;
+  callButtonText?: InputMaybe<Scalars['String']['input']>;
+  emailButtonText?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type HomepageFooterMutation = {
+  name?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['JSON']['input']>;
+  copyright?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type HomepageMutation = {
   hero?: InputMaybe<HomepageHeroMutation>;
   chiSono?: InputMaybe<HomepageChiSonoMutation>;
   servizi?: InputMaybe<HomepageServiziMutation>;
-  gallery?: InputMaybe<HomepageGalleryMutation>;
-  doveSono?: InputMaybe<HomepageDoveSonoMutation>;
+  contatti?: InputMaybe<HomepageContattiMutation>;
+  footer?: InputMaybe<HomepageFooterMutation>;
 };
 
 export type PostMutation = {
@@ -534,7 +583,7 @@ export type PostMutation = {
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
-export type HomepagePartsFragment = { __typename: 'Homepage', hero?: { __typename: 'HomepageHero', name: string, surname: string, title: string, subtitle: string, description: any, ctaPrimary: string, ctaSecondary: string } | null, chiSono?: { __typename: 'HomepageChiSono', title: string, description: any, image?: string | null } | null, servizi?: { __typename: 'HomepageServizi', title: string, subtitle?: string | null, services?: Array<{ __typename: 'HomepageServiziServices', title: string, description: string, icon?: string | null } | null> | null } | null, gallery?: { __typename: 'HomepageGallery', title: string, subtitle?: string | null, projects?: Array<{ __typename: 'HomepageGalleryProjects', title: string, description?: string | null, image: string, location?: string | null, year?: string | null } | null> | null } | null, doveSono?: { __typename: 'HomepageDoveSono', title: string, address: string, phone?: string | null, email?: string | null, description?: string | null } | null };
+export type HomepagePartsFragment = { __typename: 'Homepage', hero?: { __typename: 'HomepageHero', name: string, surname: string, title: string, subtitle: string, description: any, ctaPrimary: string, ctaSecondary: string, heroIcon?: string | null } | null, chiSono?: { __typename: 'HomepageChiSono', title: string, description: any, image?: string | null, features?: Array<{ __typename: 'HomepageChiSonoFeatures', title: string, description: string, icon?: string | null } | null> | null } | null, servizi?: { __typename: 'HomepageServizi', title: string, subtitle?: string | null, description?: any | null, services?: Array<{ __typename: 'HomepageServiziServices', title: string, description: string, icon: string, features?: Array<string | null> | null } | null> | null } | null, contatti?: { __typename: 'HomepageContatti', title: string, description: string, address: string, phone: string, email: string, workingHours: string, mapUrl: string, zonesTitle: string, zonesDescription: string, appointmentTitle: string, appointmentDescription: string, callButtonText: string, emailButtonText: string, zonesList?: Array<{ __typename: 'HomepageContattiZonesList', name: string } | null> | null } | null, footer?: { __typename: 'HomepageFooter', name: string, title: string, description: any, copyright: string } | null };
 
 export type PostPartsFragment = { __typename: 'Post', title: string, tags?: Array<string | null> | null, date: string, excerpt?: string | null, coverImage?: string | null, body?: any | null };
 
@@ -543,7 +592,7 @@ export type HomepageQueryVariables = Exact<{
 }>;
 
 
-export type HomepageQuery = { __typename?: 'Query', homepage: { __typename: 'Homepage', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'HomepageHero', name: string, surname: string, title: string, subtitle: string, description: any, ctaPrimary: string, ctaSecondary: string } | null, chiSono?: { __typename: 'HomepageChiSono', title: string, description: any, image?: string | null } | null, servizi?: { __typename: 'HomepageServizi', title: string, subtitle?: string | null, services?: Array<{ __typename: 'HomepageServiziServices', title: string, description: string, icon?: string | null } | null> | null } | null, gallery?: { __typename: 'HomepageGallery', title: string, subtitle?: string | null, projects?: Array<{ __typename: 'HomepageGalleryProjects', title: string, description?: string | null, image: string, location?: string | null, year?: string | null } | null> | null } | null, doveSono?: { __typename: 'HomepageDoveSono', title: string, address: string, phone?: string | null, email?: string | null, description?: string | null } | null } };
+export type HomepageQuery = { __typename?: 'Query', homepage: { __typename: 'Homepage', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'HomepageHero', name: string, surname: string, title: string, subtitle: string, description: any, ctaPrimary: string, ctaSecondary: string, heroIcon?: string | null } | null, chiSono?: { __typename: 'HomepageChiSono', title: string, description: any, image?: string | null, features?: Array<{ __typename: 'HomepageChiSonoFeatures', title: string, description: string, icon?: string | null } | null> | null } | null, servizi?: { __typename: 'HomepageServizi', title: string, subtitle?: string | null, description?: any | null, services?: Array<{ __typename: 'HomepageServiziServices', title: string, description: string, icon: string, features?: Array<string | null> | null } | null> | null } | null, contatti?: { __typename: 'HomepageContatti', title: string, description: string, address: string, phone: string, email: string, workingHours: string, mapUrl: string, zonesTitle: string, zonesDescription: string, appointmentTitle: string, appointmentDescription: string, callButtonText: string, emailButtonText: string, zonesList?: Array<{ __typename: 'HomepageContattiZonesList', name: string } | null> | null } | null, footer?: { __typename: 'HomepageFooter', name: string, title: string, description: any, copyright: string } | null } };
 
 export type HomepageConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -555,7 +604,7 @@ export type HomepageConnectionQueryVariables = Exact<{
 }>;
 
 
-export type HomepageConnectionQuery = { __typename?: 'Query', homepageConnection: { __typename?: 'HomepageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'HomepageConnectionEdges', cursor: string, node?: { __typename: 'Homepage', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'HomepageHero', name: string, surname: string, title: string, subtitle: string, description: any, ctaPrimary: string, ctaSecondary: string } | null, chiSono?: { __typename: 'HomepageChiSono', title: string, description: any, image?: string | null } | null, servizi?: { __typename: 'HomepageServizi', title: string, subtitle?: string | null, services?: Array<{ __typename: 'HomepageServiziServices', title: string, description: string, icon?: string | null } | null> | null } | null, gallery?: { __typename: 'HomepageGallery', title: string, subtitle?: string | null, projects?: Array<{ __typename: 'HomepageGalleryProjects', title: string, description?: string | null, image: string, location?: string | null, year?: string | null } | null> | null } | null, doveSono?: { __typename: 'HomepageDoveSono', title: string, address: string, phone?: string | null, email?: string | null, description?: string | null } | null } | null } | null> | null } };
+export type HomepageConnectionQuery = { __typename?: 'Query', homepageConnection: { __typename?: 'HomepageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'HomepageConnectionEdges', cursor: string, node?: { __typename: 'Homepage', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'HomepageHero', name: string, surname: string, title: string, subtitle: string, description: any, ctaPrimary: string, ctaSecondary: string, heroIcon?: string | null } | null, chiSono?: { __typename: 'HomepageChiSono', title: string, description: any, image?: string | null, features?: Array<{ __typename: 'HomepageChiSonoFeatures', title: string, description: string, icon?: string | null } | null> | null } | null, servizi?: { __typename: 'HomepageServizi', title: string, subtitle?: string | null, description?: any | null, services?: Array<{ __typename: 'HomepageServiziServices', title: string, description: string, icon: string, features?: Array<string | null> | null } | null> | null } | null, contatti?: { __typename: 'HomepageContatti', title: string, description: string, address: string, phone: string, email: string, workingHours: string, mapUrl: string, zonesTitle: string, zonesDescription: string, appointmentTitle: string, appointmentDescription: string, callButtonText: string, emailButtonText: string, zonesList?: Array<{ __typename: 'HomepageContattiZonesList', name: string } | null> | null } | null, footer?: { __typename: 'HomepageFooter', name: string, title: string, description: any, copyright: string } | null } | null } | null> | null } };
 
 export type PostQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -588,44 +637,59 @@ export const HomepagePartsFragmentDoc = gql`
     description
     ctaPrimary
     ctaSecondary
+    heroIcon
   }
   chiSono {
     __typename
     title
     description
     image
-  }
-  servizi {
-    __typename
-    title
-    subtitle
-    services {
+    features {
       __typename
       title
       description
       icon
     }
   }
-  gallery {
+  servizi {
     __typename
     title
     subtitle
-    projects {
+    description
+    services {
       __typename
       title
       description
-      image
-      location
-      year
+      icon
+      features
     }
   }
-  doveSono {
+  contatti {
     __typename
     title
+    description
     address
     phone
     email
+    workingHours
+    mapUrl
+    zonesTitle
+    zonesDescription
+    zonesList {
+      __typename
+      name
+    }
+    appointmentTitle
+    appointmentDescription
+    callButtonText
+    emailButtonText
+  }
+  footer {
+    __typename
+    name
+    title
     description
+    copyright
   }
 }
     `;
@@ -816,7 +880,7 @@ export const ExperimentalGetTinaClient = () =>
   getSdk(
     generateRequester(
       createClient({
-        url: "http://localhost:4001/graphql",
+        url: "https://content.tinajs.io/1.6/content/66cb0674-8cab-41ce-bc1a-b96ed6911276/github/main",
         queries,
       })
     )

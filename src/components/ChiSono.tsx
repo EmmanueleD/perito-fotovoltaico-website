@@ -1,14 +1,22 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Award, Users, Lightbulb, Shield } from 'lucide-react'
-import TinaRichText from './TinaRichText'
+import { Award, Users, Lightbulb, Shield, Star, Check, BarChart } from 'lucide-react'
+import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import { tinaField } from "tinacms/dist/react"
+import Image from 'next/image'
+
+interface Feature {
+  title: string
+  description: string
+  icon?: any // Make icon optional since it's only used in default features
+}
 
 interface ChiSonoData {
   title: string
   description: any
   image?: string | null
+  features?: Feature[]
   [key: string]: any
 }
 
@@ -17,28 +25,8 @@ interface ChiSonoProps {
 }
 
 export default function ChiSono({ data }: ChiSonoProps) {
-  const features = [
-    {
-      icon: Award,
-      title: "ESPERIENZA CERTIFICATA",
-      description: "Oltre 15 anni nel settore dell'energia rinnovabile con certificazioni professionali riconosciute."
-    },
-    {
-      icon: Users,
-      title: "APPROCCIO PERSONALIZZATO",
-      description: "Specializzato nell'installazione e manutenzione di impianti fotovoltaici, con particolare attenzione all'efficienza energetica e alla sostenibilità ambientale."
-    },
-    {
-      icon: Lightbulb,
-      title: "SOLUZIONI INNOVATIVE",
-      description: "Utilizzo delle tecnologie più avanzate per garantire prestazioni ottimali e durature."
-    },
-    {
-      icon: Shield,
-      title: "GARANZIA TOTALE",
-      description: "Assistenza completa dalla progettazione alla manutenzione con garanzie estese."
-    }
-  ]
+  // Use provided features or fallback to defaults
+  const features = data?.features || [];
 
   return (
     <section id="chi-sono" className="py-20 bg-white">
@@ -83,20 +71,22 @@ export default function ChiSono({ data }: ChiSonoProps) {
             </h2>
             
             <div className="text-lg text-gray-700 mb-8 leading-relaxed text-center max-w-3xl mx-auto" data-tina-field={tinaField(data, "description")}>
-              {data?.description ? (
-                <TinaRichText content={data.description} className="text-center" />
-              ) : (
-                <p>
-                  Con oltre <span className="font-semibold text-blue-800">15 anni di esperienza</span> nel settore energetico,
-                  mi dedico alla <span className="font-semibold text-blue-800">progettazione e installazione</span> di sistemi
-                  fotovoltaici all&apos;avanguardia. La mia missione è rendere l&apos;<span className="font-semibold text-green-600">energia sostenibile</span>
-                  accessibile a tutti.
-                </p>
-              )}
+              <div className="prose max-w-none">
+                {data?.description ? (
+                  <TinaMarkdown content={data.description} />
+                ) : (
+                  <p>
+                    Con oltre <span className="font-semibold text-blue-800">15 anni di esperienza</span> nel settore energetico,
+                    mi dedico alla <span className="font-semibold text-blue-800">progettazione e installazione</span> di sistemi
+                    fotovoltaici all&apos;avanguardia. La mia missione è rendere l&apos;<span className="font-semibold text-green-600">energia sostenibile</span>
+                    accessibile a tutti.
+                  </p>
+                )}
+              </div>
             </div>
 
             {/* Features */}
-            <div className="space-y-4">
+            <div className="space-y-6 mt-12">
               {features.map((feature, index) => (
                 <motion.div
                   key={index}
@@ -104,14 +94,32 @@ export default function ChiSono({ data }: ChiSonoProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="flex items-start space-x-3"
+                  className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex items-start"
+                  data-tina-field={tinaField(data, `features.${index}`)}
                 >
-                  <div className="flex-shrink-0 p-3 bg-gray-100 border border-gray-300 shadow-sm">
-                    <feature.icon className="w-8 h-8 text-blue-800" />
+                  <div className="w-12 h-12 bg-blue-100 rounded-full flex-shrink-0 flex items-center justify-center text-blue-600 mr-4 self-center">
+                    {feature.icon === 'Award' && <Award className="w-6 h-6" />}
+                    {feature.icon === 'Users' && <Users className="w-6 h-6" />}
+                    {feature.icon === 'Lightbulb' && <Lightbulb className="w-6 h-6" />}
+                    {feature.icon === 'Shield' && <Shield className="w-6 h-6" />}
+                    {feature.icon === 'Star' && <Star className="w-6 h-6" />}
+                    {feature.icon === 'Check' && <Check className="w-6 h-6" />}
+                    {feature.icon === 'BarChart' && <BarChart className="w-6 h-6" />}
+                    {!feature.icon && <Lightbulb className="w-6 h-6" />}
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-2">{feature.title}</h3>
-                    <p className="text-gray-600 leading-relaxed text-sm">{feature.description}</p>
+                    <h3 
+                      className="text-lg font-bold text-gray-800 mb-2"
+                      data-tina-field={tinaField(data, `features.${index}.title`)}
+                    >
+                      {feature.title}
+                    </h3>
+                    <p 
+                      className="text-gray-600"
+                      data-tina-field={tinaField(data, `features.${index}.description`)}
+                    >
+                      {feature.description}
+                    </p>
                   </div>
                 </motion.div>
               ))}

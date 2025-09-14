@@ -89,6 +89,12 @@ export default defineConfig({
                 name: "ctaSecondary",
                 label: "Testo Bottone Secondario",
                 required: true
+              },
+              {
+                type: "image",
+                name: "heroIcon",
+                label: "Icona Hero",
+                description: "Icona da mostrare accanto al titolo"
               }
               // {
               //   type: "string",
@@ -119,6 +125,43 @@ export default defineConfig({
                 type: "image",
                 name: "image",
                 label: "Immagine Profilo"
+              },
+              {
+                type: "object",
+                name: "features",
+                label: "Caratteristiche",
+                list: true,
+                fields: [
+                  {
+                    type: "string",
+                    name: "title",
+                    label: "Titolo",
+                    required: true
+                  },
+                  {
+                    type: "string",
+                    name: "description",
+                    label: "Descrizione",
+                    ui: {
+                      component: "textarea"
+                    },
+                    required: true
+                  },
+                  {
+                    type: "string",
+                    name: "icon",
+                    label: "Icona",
+                    options: [
+                      { label: "Trophy", value: "Award" },
+                      { label: "Utenti", value: "Users" },
+                      { label: "Lampadina", value: "Lightbulb" },
+                      { label: "Scudo", value: "Shield" },
+                      { label: "Stella", value: "Star" },
+                      { label: "Check", value: "Check" },
+                      { label: "Grafico", value: "BarChart" }
+                    ]
+                  }
+                ]
               }
             ]
           },
@@ -139,10 +182,20 @@ export default defineConfig({
                 label: "Sottotitolo"
               },
               {
+                type: "rich-text",
+                name: "description",
+                label: "Descrizione Sezione"
+              },
+              {
                 type: "object",
                 name: "services",
                 label: "Lista Servizi",
                 list: true,
+                ui: {
+                  itemProps: (item: any) => ({
+                    label: item?.title || 'Nuovo Servizio',
+                  }),
+                },
                 fields: [
                   {
                     type: "string",
@@ -154,12 +207,35 @@ export default defineConfig({
                     type: "string",
                     name: "description",
                     label: "Descrizione",
+                    ui: {
+                      component: "textarea"
+                    },
                     required: true
                   },
                   {
-                    type: "image",
+                    type: "string",
                     name: "icon",
-                    label: "Icona/Immagine"
+                    label: "Icona",
+                    options: [
+                      { label: "Calcolatrice", value: "Calculator" },
+                      { label: "Ingranaggi", value: "Settings" },
+                      { label: "Grafico", value: "BarChart3" },
+                      { label: "Chiave inglese", value: "Wrench" },
+                      { label: "Scudo", value: "Shield" },
+                      { label: "Sole", value: "Sun" },
+                      { label: "Lampadina", value: "Lightbulb" },
+                      { label: "Check", value: "Check" }
+                    ],
+                    required: true
+                  },
+                  {
+                    type: "string",
+                    name: "features",
+                    label: "Caratteristiche",
+                    list: true,
+                    ui: {
+                      component: "list"
+                    }
                   }
                 ]
               }
@@ -167,66 +243,19 @@ export default defineConfig({
           },
           {
             type: "object",
-            name: "gallery",
-            label: "Sezione Gallery",
+            name: "contatti",
+            label: "Sezione Contatti",
             fields: [
               {
                 type: "string",
                 name: "title",
-                label: "Titolo",
+                label: "Titolo Sezione",
                 required: true
               },
               {
                 type: "string",
-                name: "subtitle",
-                label: "Sottotitolo"
-              },
-              {
-                type: "object",
-                name: "projects",
-                label: "Progetti",
-                list: true,
-                fields: [
-                  {
-                    type: "string",
-                    name: "title",
-                    label: "Titolo Progetto",
-                    required: true
-                  },
-                  {
-                    type: "string",
-                    name: "description",
-                    label: "Descrizione"
-                  },
-                  {
-                    type: "image",
-                    name: "image",
-                    label: "Immagine",
-                    required: true
-                  },
-                  {
-                    type: "string",
-                    name: "location",
-                    label: "Luogo"
-                  },
-                  {
-                    type: "string",
-                    name: "year",
-                    label: "Anno"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            type: "object",
-            name: "doveSono",
-            label: "Sezione Dove Sono",
-            fields: [
-              {
-                type: "string",
-                name: "title",
-                label: "Titolo",
+                name: "description",
+                label: "Sottotitolo",
                 required: true
               },
               {
@@ -238,17 +267,115 @@ export default defineConfig({
               {
                 type: "string",
                 name: "phone",
-                label: "Telefono"
+                label: "Telefono",
+                description: "Inserisci il numero di telefono con prefisso internazionale (es: +39 123 456 7890)",
+                required: true
               },
               {
                 type: "string",
                 name: "email",
-                label: "Email"
+                label: "Email",
+                description: "Inserisci l'indirizzo email di contatto",
+                required: true
               },
               {
                 type: "string",
+                name: "workingHours",
+                label: "Orari di Lavoro",
+                required: true
+              },
+              {
+                type: "string",
+                name: "mapUrl",
+                label: "URL Mappa Google Maps",
+                description: "Incolla l'URL di incorporamento di Google Maps",
+                required: true
+              },
+              {
+                type: "string",
+                name: "zonesTitle",
+                label: "Titolo Zone di Intervento",
+                required: true
+              },
+              {
+                type: "string",
+                name: "zonesDescription",
+                label: "Descrizione Zone di Intervento",
+                required: true
+              },
+              {
+                type: "object",
+                name: "zonesList",
+                label: "Elenco Zone",
+                list: true,
+                ui: {
+                  itemProps: (item) => ({
+                    label: item?.name || 'Nuova Zona'
+                  })
+                },
+                fields: [
+                  {
+                    type: "string",
+                    name: "name",
+                    label: "Nome Zona",
+                    required: true
+                  }
+                ]
+              },
+              {
+                type: "string",
+                name: "appointmentTitle",
+                label: "Titolo Prenotazione",
+                required: true
+              },
+              {
+                type: "string",
+                name: "appointmentDescription",
+                label: "Descrizione Prenotazione",
+                required: true
+              },
+              {
+                type: "string",
+                name: "callButtonText",
+                label: "Testo Bottone Chiama",
+                required: true
+              },
+              {
+                type: "string",
+                name: "emailButtonText",
+                label: "Testo Bottone Email",
+                required: true
+              }
+            ]
+          },
+          {
+            type: "object",
+            name: "footer",
+            label: "Footer",
+            fields: [
+              {
+                type: "string",
+                name: "name",
+                label: "Nome Completo",
+                required: true
+              },
+              {
+                type: "string",
+                name: "title",
+                label: "Titolo Professionale",
+                required: true
+              },
+              {
+                type: "rich-text",
                 name: "description",
-                label: "Descrizione"
+                label: "Descrizione",
+                required: true
+              },
+              {
+                type: "string",
+                name: "copyright",
+                label: "Testo Copyright",
+                required: true
               }
             ]
           }

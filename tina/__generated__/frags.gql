@@ -9,44 +9,59 @@ fragment HomepageParts on Homepage {
     description
     ctaPrimary
     ctaSecondary
+    heroIcon
   }
   chiSono {
     __typename
     title
     description
     image
-  }
-  servizi {
-    __typename
-    title
-    subtitle
-    services {
+    features {
       __typename
       title
       description
       icon
     }
   }
-  gallery {
+  servizi {
     __typename
     title
     subtitle
-    projects {
+    description
+    services {
       __typename
       title
       description
-      image
-      location
-      year
+      icon
+      features
     }
   }
-  doveSono {
+  contatti {
     __typename
     title
+    description
     address
     phone
     email
+    workingHours
+    mapUrl
+    zonesTitle
+    zonesDescription
+    zonesList {
+      __typename
+      name
+    }
+    appointmentTitle
+    appointmentDescription
+    callButtonText
+    emailButtonText
+  }
+  footer {
+    __typename
+    name
+    title
     description
+    copyright
   }
 }
 

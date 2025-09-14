@@ -98,54 +98,70 @@ type HomepageHero {
   description: JSON!
   ctaPrimary: String!
   ctaSecondary: String!
+  heroIcon: String
+}
+
+type HomepageChiSonoFeatures {
+  title: String!
+  description: String!
+  icon: String
 }
 
 type HomepageChiSono {
   title: String!
   description: JSON!
   image: String
+  features: [HomepageChiSonoFeatures]
 }
 
 type HomepageServiziServices {
   title: String!
   description: String!
-  icon: String
+  icon: String!
+  features: [String]
 }
 
 type HomepageServizi {
   title: String!
   subtitle: String
+  description: JSON
   services: [HomepageServiziServices]
 }
 
-type HomepageGalleryProjects {
-  title: String!
-  description: String
-  image: String!
-  location: String
-  year: String
+type HomepageContattiZonesList {
+  name: String!
 }
 
-type HomepageGallery {
+type HomepageContatti {
   title: String!
-  subtitle: String
-  projects: [HomepageGalleryProjects]
-}
-
-type HomepageDoveSono {
-  title: String!
+  description: String!
   address: String!
-  phone: String
-  email: String
-  description: String
+  phone: String!
+  email: String!
+  workingHours: String!
+  mapUrl: String!
+  zonesTitle: String!
+  zonesDescription: String!
+  zonesList: [HomepageContattiZonesList]
+  appointmentTitle: String!
+  appointmentDescription: String!
+  callButtonText: String!
+  emailButtonText: String!
+}
+
+type HomepageFooter {
+  name: String!
+  title: String!
+  description: JSON!
+  copyright: String!
 }
 
 type Homepage implements Node & Document {
   hero: HomepageHero
   chiSono: HomepageChiSono
   servizi: HomepageServizi
-  gallery: HomepageGallery
-  doveSono: HomepageDoveSono
+  contatti: HomepageContatti
+  footer: HomepageFooter
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
@@ -164,6 +180,13 @@ input RichTextFilter {
   exists: Boolean
 }
 
+input ImageFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+  in: [String]
+}
+
 input HomepageHeroFilter {
   name: StringFilter
   surname: StringFilter
@@ -172,61 +195,70 @@ input HomepageHeroFilter {
   description: RichTextFilter
   ctaPrimary: StringFilter
   ctaSecondary: StringFilter
+  heroIcon: ImageFilter
 }
 
-input ImageFilter {
-  startsWith: String
-  eq: String
-  exists: Boolean
-  in: [String]
+input HomepageChiSonoFeaturesFilter {
+  title: StringFilter
+  description: StringFilter
+  icon: StringFilter
 }
 
 input HomepageChiSonoFilter {
   title: StringFilter
   description: RichTextFilter
   image: ImageFilter
+  features: HomepageChiSonoFeaturesFilter
 }
 
 input HomepageServiziServicesFilter {
   title: StringFilter
   description: StringFilter
-  icon: ImageFilter
+  icon: StringFilter
+  features: StringFilter
 }
 
 input HomepageServiziFilter {
   title: StringFilter
   subtitle: StringFilter
+  description: RichTextFilter
   services: HomepageServiziServicesFilter
 }
 
-input HomepageGalleryProjectsFilter {
+input HomepageContattiZonesListFilter {
+  name: StringFilter
+}
+
+input HomepageContattiFilter {
   title: StringFilter
   description: StringFilter
-  image: ImageFilter
-  location: StringFilter
-  year: StringFilter
-}
-
-input HomepageGalleryFilter {
-  title: StringFilter
-  subtitle: StringFilter
-  projects: HomepageGalleryProjectsFilter
-}
-
-input HomepageDoveSonoFilter {
-  title: StringFilter
   address: StringFilter
   phone: StringFilter
   email: StringFilter
-  description: StringFilter
+  workingHours: StringFilter
+  mapUrl: StringFilter
+  zonesTitle: StringFilter
+  zonesDescription: StringFilter
+  zonesList: HomepageContattiZonesListFilter
+  appointmentTitle: StringFilter
+  appointmentDescription: StringFilter
+  callButtonText: StringFilter
+  emailButtonText: StringFilter
+}
+
+input HomepageFooterFilter {
+  name: StringFilter
+  title: StringFilter
+  description: RichTextFilter
+  copyright: StringFilter
 }
 
 input HomepageFilter {
   hero: HomepageHeroFilter
   chiSono: HomepageChiSonoFilter
   servizi: HomepageServiziFilter
-  gallery: HomepageGalleryFilter
-  doveSono: HomepageDoveSonoFilter
+  contatti: HomepageContattiFilter
+  footer: HomepageFooterFilter
 }
 
 type HomepageConnectionEdges {
@@ -311,54 +343,70 @@ input HomepageHeroMutation {
   description: JSON
   ctaPrimary: String
   ctaSecondary: String
+  heroIcon: String
+}
+
+input HomepageChiSonoFeaturesMutation {
+  title: String
+  description: String
+  icon: String
 }
 
 input HomepageChiSonoMutation {
   title: String
   description: JSON
   image: String
+  features: [HomepageChiSonoFeaturesMutation]
 }
 
 input HomepageServiziServicesMutation {
   title: String
   description: String
   icon: String
+  features: [String]
 }
 
 input HomepageServiziMutation {
   title: String
   subtitle: String
+  description: JSON
   services: [HomepageServiziServicesMutation]
 }
 
-input HomepageGalleryProjectsMutation {
+input HomepageContattiZonesListMutation {
+  name: String
+}
+
+input HomepageContattiMutation {
   title: String
   description: String
-  image: String
-  location: String
-  year: String
-}
-
-input HomepageGalleryMutation {
-  title: String
-  subtitle: String
-  projects: [HomepageGalleryProjectsMutation]
-}
-
-input HomepageDoveSonoMutation {
-  title: String
   address: String
   phone: String
   email: String
-  description: String
+  workingHours: String
+  mapUrl: String
+  zonesTitle: String
+  zonesDescription: String
+  zonesList: [HomepageContattiZonesListMutation]
+  appointmentTitle: String
+  appointmentDescription: String
+  callButtonText: String
+  emailButtonText: String
+}
+
+input HomepageFooterMutation {
+  name: String
+  title: String
+  description: JSON
+  copyright: String
 }
 
 input HomepageMutation {
   hero: HomepageHeroMutation
   chiSono: HomepageChiSonoMutation
   servizi: HomepageServiziMutation
-  gallery: HomepageGalleryMutation
-  doveSono: HomepageDoveSonoMutation
+  contatti: HomepageContattiMutation
+  footer: HomepageFooterMutation
 }
 
 input PostMutation {

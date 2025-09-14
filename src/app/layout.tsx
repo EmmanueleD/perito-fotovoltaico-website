@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import CookieBanner from "@/components/CookieBanner";
 import "./globals.css";
+// Import client Tina in modo dinamico per evitare problemi di SSR
+const getClient = () => import('@/tina/__generated__/client').then(mod => mod.client);
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -75,11 +78,32 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest"
 };
 
-export default function RootLayout({
+async function getData() {
+  try {
+    const client = await getClient();
+    const homepage = await client.queries.homepage({
+      relativePath: 'home.json'
+    });
+
+    return {
+      footer: homepage.data.homepage.footer || {},
+      contatti: homepage.data.homepage.contatti || {}
+    };
+  } catch (error) {
+    console.error('Errore nel caricamento dei dati:', error);
+    return {
+      footer: {},
+      contatti: {}
+    };
+  }
+}
+
+export default async function RootLayout({
   children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { footer, contatti } = await getData();
   return (
     <html lang="it">
       <head>
@@ -93,6 +117,7 @@ export default function RootLayout({
       <body className="antialiased">
         <Header />
         <div className="pt-16 md:pt-20">{children}</div>
+        <Footer data={{ footer, contatti }} />
         <CookieBanner />
       </body>
     </html>
