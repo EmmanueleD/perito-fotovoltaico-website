@@ -245,6 +245,7 @@ type Post implements Node & Document {
   tags: [String]
   date: String!
   excerpt: String
+  coverImage: String
   body: JSON
   id: ID!
   _sys: SystemInfo!
@@ -264,6 +265,7 @@ input PostFilter {
   tags: StringFilter
   date: DatetimeFilter
   excerpt: StringFilter
+  coverImage: ImageFilter
   body: RichTextFilter
 }
 
@@ -364,6 +366,7 @@ input PostMutation {
   tags: [String]
   date: String
   excerpt: String
+  coverImage: String
   body: JSON
 }
 

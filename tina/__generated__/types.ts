@@ -349,6 +349,7 @@ export type Post = Node & Document & {
   tags?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   date: Scalars['String']['output'];
   excerpt?: Maybe<Scalars['String']['output']>;
+  coverImage?: Maybe<Scalars['String']['output']>;
   body?: Maybe<Scalars['JSON']['output']>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
@@ -368,6 +369,7 @@ export type PostFilter = {
   tags?: InputMaybe<StringFilter>;
   date?: InputMaybe<DatetimeFilter>;
   excerpt?: InputMaybe<StringFilter>;
+  coverImage?: InputMaybe<ImageFilter>;
   body?: InputMaybe<RichTextFilter>;
 };
 
@@ -528,12 +530,13 @@ export type PostMutation = {
   tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   date?: InputMaybe<Scalars['String']['input']>;
   excerpt?: InputMaybe<Scalars['String']['input']>;
+  coverImage?: InputMaybe<Scalars['String']['input']>;
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
 export type HomepagePartsFragment = { __typename: 'Homepage', hero?: { __typename: 'HomepageHero', name: string, surname: string, title: string, subtitle: string, description: any, ctaPrimary: string, ctaSecondary: string } | null, chiSono?: { __typename: 'HomepageChiSono', title: string, description: any, image?: string | null } | null, servizi?: { __typename: 'HomepageServizi', title: string, subtitle?: string | null, services?: Array<{ __typename: 'HomepageServiziServices', title: string, description: string, icon?: string | null } | null> | null } | null, gallery?: { __typename: 'HomepageGallery', title: string, subtitle?: string | null, projects?: Array<{ __typename: 'HomepageGalleryProjects', title: string, description?: string | null, image: string, location?: string | null, year?: string | null } | null> | null } | null, doveSono?: { __typename: 'HomepageDoveSono', title: string, address: string, phone?: string | null, email?: string | null, description?: string | null } | null };
 
-export type PostPartsFragment = { __typename: 'Post', title: string, tags?: Array<string | null> | null, date: string, excerpt?: string | null, body?: any | null };
+export type PostPartsFragment = { __typename: 'Post', title: string, tags?: Array<string | null> | null, date: string, excerpt?: string | null, coverImage?: string | null, body?: any | null };
 
 export type HomepageQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -559,7 +562,7 @@ export type PostQueryVariables = Exact<{
 }>;
 
 
-export type PostQuery = { __typename?: 'Query', post: { __typename: 'Post', id: string, title: string, tags?: Array<string | null> | null, date: string, excerpt?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type PostQuery = { __typename?: 'Query', post: { __typename: 'Post', id: string, title: string, tags?: Array<string | null> | null, date: string, excerpt?: string | null, coverImage?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type PostConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -571,7 +574,7 @@ export type PostConnectionQueryVariables = Exact<{
 }>;
 
 
-export type PostConnectionQuery = { __typename?: 'Query', postConnection: { __typename?: 'PostConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PostConnectionEdges', cursor: string, node?: { __typename: 'Post', id: string, title: string, tags?: Array<string | null> | null, date: string, excerpt?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type PostConnectionQuery = { __typename?: 'Query', postConnection: { __typename?: 'PostConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PostConnectionEdges', cursor: string, node?: { __typename: 'Post', id: string, title: string, tags?: Array<string | null> | null, date: string, excerpt?: string | null, coverImage?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export const HomepagePartsFragmentDoc = gql`
     fragment HomepageParts on Homepage {
@@ -633,6 +636,7 @@ export const PostPartsFragmentDoc = gql`
   tags
   date
   excerpt
+  coverImage
   body
 }
     `;

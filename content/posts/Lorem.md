@@ -5,6 +5,7 @@ tags:
   - Fotovoltaico
 date: 2025-09-13T22:00:00.000Z
 excerpt: Riassunto lorem ipsum
+coverImage: /IMG_9618.jpeg
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam id sapien nec massa iaculis volutpat vel luctus mauris. Aliquam pulvinar nibh ut euismod luctus. Praesent imperdiet lacus quis nulla tempus, at tincidunt nulla aliquam. Nam dictum mattis orci id faucibus. Morbi pellentesque magna a dolor imperdiet auctor. Praesent varius imperdiet tortor, vel venenatis neque venenatis quis. Nulla facilisi. Nunc porta pellentesque elit, nec accumsan orci. Vivamus eu dignissim quam, vel rutrum enim. Sed volutpat arcu vel ipsum mollis, et lacinia massa aliquam. Vestibulum rutrum eget magna tempus egestas. Integer aliquet, lectus et porta auctor, quam leo vulputate nisl, in efficitur dolor purus eu metus. Donec ipsum mi, semper at dui quis, cursus maximus nunc. Curabitur dapibus tempor ligula sit amet fringilla. Duis sed tellus eu mauris pretium rhoncus. Ut vulputate nisl a porttitor pulvinar.
