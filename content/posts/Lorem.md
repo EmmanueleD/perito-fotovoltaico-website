@@ -1,7 +1,6 @@
 ---
 title: Lorem
 tags:
-  - Emmanuele's testing tag
   - Tecnologia
   - Fotovoltaico
 date: 2025-09-13T22:00:00.000Z
