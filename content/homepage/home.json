@@ -38,17 +38,18 @@
   },
   "chiSono": {
     "title": "Chi Sono",
-    "description": "",
-    "image": "/IMG_9618.jpeg"
+    "description": "Studio Fulminis - Informazioni\n",
+    "image": ""
   },
   "servizi": {
     "title": "I Miei Servizi",
     "subtitle": "PROGETTAZIONE ELETTRICA, CONSULENZA, ENERGIE RINNOVABILI, PRATICHE FOTOVOLTAICHE. NON SOLO, LO STUDIO TECNICO FULMINIS SI OCCUPA ANCHE DI DIREZIONE LAVORI, VANTANDO ESPERIENZA OPERATIVA SUL CAMPO... OLTRE CHE A TANTA PASSIONE",
+    "description": "",
     "services": [
       {
         "title": "Progettazione Impianti",
         "description": "Progettazione tecnica completa di sistemi fotovoltaici su misura per le tue esigenze energetiche.",
-        "icon": "/IMG_9618.jpeg"
+        "icon": "Calculator"
       }
     ]
   },
@@ -67,7 +68,7 @@
         "name": "Cesena e provincia"
       },
       {
-        "name": "Bergamo e provincia"
+        "name": "Forli e provincia"
       },
       {
         "name": "Brescia e provincia"
