@@ -38,7 +38,7 @@
   },
   "chiSono": {
     "title": "Chi Sono",
-    "description": "Prima di ogni altra cosa sono un appassionato di elettronica e radioamatore con nominativo IZ4SDC. La radio è quella passione che ti porta al continuo studio e miglioramento. \n\nDocente di scienze elettriche ed elettroniche presso l'Istituto Tecnico Aeronautico di Forlì “Baracca”.\n\nIn qualità di libero professionista, con il mio studio, mi occupo di consulenza tecnica, progettazione elettrica, direzione lavori ed energie rinnovabili.\n",
+    "description": "Prima di ogni altra cosa sono un appassionato di elettronica e radioamatore con nominativo IZ4SDC. La radio è quella passione che ti porta al continuo studio e miglioramento.\n\nDocente di scienze elettriche ed elettroniche presso l'Istituto Tecnico Aeronautico di Forlì “Baracca”.\n\nIn qualità di libero professionista, con il mio studio, mi occupo di consulenza tecnica, progettazione elettrica, direzione lavori ed energie rinnovabili.\n",
     "image": "/photo_2025-09-22_23-13-50.jpg"
   },
   "servizi": {
@@ -56,13 +56,13 @@
   "contatti": {
     "title": "Contattaci",
     "description": "Siamo qui per rispondere alle tue domande e fornirti le soluzioni migliori per le tue esigenze energetiche.",
-    "address": "Via Cia degli Ordelaffi, 8, 47521 Cesena FC",
-    "phone": "+39 123 456 7890",
+    "address": "Via Violone, 264 Cesena (FC) ed in Via Buffolara 57/b Parma (PR)",
+    "phone": "+39 351 4804500",
     "email": "info@studiofulminis.it",
     "workingHours": "Lun-Ven: 9:00 - 18:00",
     "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11858.02992042182!2d12.23969471557754!3d44.1385098875493!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132ca4c72441c673%3A0xa9c91aa75fd5cbb5!2sRocca%20Malatestiana!5e1!3m2!1sit!2sit!4v1757870847736!5m2!1sit!2sit",
-    "zonesTitle": "Zone di Intervento",
-    "zonesDescription": "Offro i miei servizi in tutta la Lombardia con particolare focus su:",
+    "zonesTitle": "Zone di intervento",
+    "zonesDescription": "Copriamo tutto il territorio nazionale",
     "zonesList": [
       {
         "name": "Cesena e provincia"
@@ -74,7 +74,7 @@
         "name": "Brescia e provincia"
       },
       {
-        "name": "Como e provincia"
+        "name": "Parma e provincia"
       },
       {
         "name": "Varese e provincia"
