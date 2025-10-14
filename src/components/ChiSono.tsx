@@ -40,18 +40,18 @@ export default function ChiSono({ data }: ChiSonoProps) {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="relative w-full h-96 overflow-hidden shadow-lg border border-gray-300" data-tina-field={tinaField(data, "image")}>
+            <div className="relative w-full shadow-lg border border-gray-300 rounded-lg overflow-hidden" data-tina-field={tinaField(data, "image")}>
               {data?.image || "/IMG_9618.jpeg" ? (
                 <img 
                   src={data?.image || "/IMG_9618.jpeg"} 
                   alt="Danilo Fulminis - Perito Industriale specializzato in sistemi fotovoltaici e energie rinnovabili" 
                   data-tina-field={tinaField(data, "image")}
-                  className="w-full h-full object-cover"
+                  className="w-full h-auto object-contain max-h-[500px] md:max-h-[600px]"
                 />
               ) : (
                 <>
                   <div className="absolute inset-0 bg-gradient-to-tr from-gray-100/90 to-blue-100/90"></div>
-                  <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+                  <div className="w-full aspect-[4/3] bg-gray-100 flex items-center justify-center">
                     <span className="text-gray-600 text-2xl font-bold">FOTO DI DANILO FULMINIS</span>
                   </div>
                 </>
