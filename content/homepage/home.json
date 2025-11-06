@@ -47,6 +47,16 @@
     "description": "",
     "services": [
       {
+        "title": "Consulenza ambientale",
+        "description": "Sopralluoghi, rilievi dettagliati e studi ambientali per offrire la miglior consulenza a fronte di una progettazione su misura per il cliente.",
+        "icon": "Sun",
+        "features": [
+          "progettazione su misura",
+          "riduzione dei costi",
+          "massimizzare l'efficienza energetica"
+        ]
+      },
+      {
         "title": "Progettazione Impianti",
         "description": "Progettazione tecnica completa di sistemi elettrici e fotovoltaici su misura per le tue esigenze energetiche.",
         "icon": "Lightbulb"
