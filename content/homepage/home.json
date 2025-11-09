@@ -47,6 +47,11 @@
     "description": "",
     "services": [
       {
+        "title": "Pratiche amministrative e allacciamento",
+        "description": "Mi occupo di tutte le pratiche necessarie per l’allaccio e la connessione in rete (Enel, GSE, Agenzia delle Dogane), evitando ritardi e semplificando la burocrazia per il cliente.\nIl servizio comprende compilazione portali, gestione dei file tecnici XML, dichiarazioni e allegati previsti dalla normativa.",
+        "icon": "BarChart3"
+      },
+      {
         "title": "Consulenze tecniche e rispondenze elettriche",
         "description": "Eseguo verifiche e relazioni di rispondenza per impianti esistenti, comprese cabine di media tensione e quadri di distribuzione industriale.\nL’obiettivo è garantire la sicurezza dell’impianto e la conformità alle norme CEI e al D.M. 37/08, con indicazioni chiare sugli interventi necessari per l’adeguamento.",
         "icon": "Wrench"
