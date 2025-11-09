@@ -47,6 +47,11 @@
     "description": "",
     "services": [
       {
+        "title": "Direzione lavori e verifiche tecniche",
+        "description": "Seguo in prima persona la direzione lavori, le verifiche di conformità e le prove finali d’impianto.\nCoordino imprese installatrici e fornitori, assicurando che i lavori vengano eseguiti a regola d’arte e nei tempi previsti.\nAlla consegna, rilascio la documentazione tecnica completa: dichiarazione di conformità, relazioni di verifica e report fotografici.",
+        "icon": "Check"
+      },
+      {
         "title": "Progettazione impianti fotovoltaici",
         "description": "Sviluppo progetti fotovoltaici per aziende agricole, industriali e commerciali, curando ogni fase: studio di fattibilità, progetto esecutivo, pratiche di connessione e direzione lavori.\nOgni impianto è dimensionato in base ai reali profili di consumo e alla normativa CEI 0-21 e CEI 0-16, garantendo massima efficienza e conformità.\nPosso seguire anche l’iter per bandi come Parco Agrisolare o PNRR Energia, incluse relazioni tecniche, computi metrici e documentazione doganale.",
         "icon": "Sun",
