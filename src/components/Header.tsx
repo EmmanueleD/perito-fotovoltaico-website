@@ -39,7 +39,7 @@ export default function Header() {
                 Studio Fulminis
               </span>
               <span className="text-xs md:text-sm text-gray-600 hidden sm:block">
-                Ingnegneria industriale
+                Ingegneria industriale
               </span>
             </div>
             <div className="relative w-10 h-10 md:w-12 md:h-12">
