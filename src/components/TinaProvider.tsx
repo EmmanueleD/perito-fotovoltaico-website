@@ -2,6 +2,7 @@
 
 import { useTina } from "tinacms/dist/react";
 import Hero from "@/components/Hero";
+import MepaBanner from "@/components/MepaBanner";
 import ChiSono from "@/components/ChiSono";
 import Servizi from "@/components/Servizi";
 // import Gallery from '@/components/Gallery' // TEMPORANEAMENTE COMMENTATO - Sezione "I miei progetti"
@@ -17,13 +18,13 @@ interface TinaProviderProps {
 export default function TinaProvider({
   data,
   variables,
-  query
+  query,
 }: TinaProviderProps) {
   // Use the useTina hook to enable visual editing
   const { data: tinaData } = useTina({
     query,
     variables,
-    data
+    data,
   });
 
   const content = tinaData.homepage;
@@ -31,6 +32,7 @@ export default function TinaProvider({
   return (
     <main className="min-h-screen">
       <Hero data={content?.hero || undefined} />
+      <MepaBanner />
       <ChiSono data={content?.chiSono || undefined} />
       <Servizi data={content?.servizi || undefined} />
       {/* <Gallery data={content?.gallery || undefined} /> */}{" "}
