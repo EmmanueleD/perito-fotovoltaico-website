@@ -47,6 +47,11 @@
     "description": "",
     "services": [
       {
+        "title": "Classificazione ATEX — Luoghi con Pericolo di Esplosione",
+        "description": "Viene redatto il Documento sulla Protezione contro le Esplosioni (DPCE) per ambienti in cui si formano atmosfere potenzialmente esplosive da gas, vapori e nebbie (CEI EN 60079-10-1) o da polveri combustibili (CEI EN 60079-10-2), in conformità alla Direttiva 1999/92/CE e al D.Lgs. 81/2008 Titolo XI. L'attività comprende la classificazione e delimitazione delle zone pericolose, la verifica dell'adeguatezza delle attrezzature installate e la definizione delle misure tecniche e organizzative da adottare. Tra i contesti tipici: cabine di verniciatura e carteggiatura, depositi di solventi, stazioni di saldatura con gas tecnici, lavorazioni di materie plastiche e impianti di macinazione.",
+        "icon": "Shield"
+      },
+      {
         "title": "Pratiche amministrative e allacciamento",
         "description": "Studio Fulminis gestisce tutte le pratiche burocratiche legate alla connessione in rete e all'allaccio degli impianti: portali Enel, GSE, Agenzia delle Dogane, pratiche SUAP e comunicazioni agli enti competenti. Vengono curati la compilazione dei file tecnici XML, le dichiarazioni di conformità, gli allegati normativi e tutta la documentazione richiesta in fase istruttoria, riducendo i tempi di attesa e sollevando il cliente da ogni onere amministrativo.",
         "icon": "BarChart3"
