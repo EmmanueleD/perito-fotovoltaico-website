@@ -94,6 +94,8 @@ configurare `CPANEL_TARGET_DIR=/`.
 - `CPANEL_TARGET_DIR` deve puntare alla document root reale, attesa:
   `/home/studiofulminis/public_html`.
 - Non caricare cartelle `__MACOSX`, file `.DS_Store` o sorgenti del progetto.
+- Il deploy sovrascrive `.htaccess` con un file vuoto per rimuovere eventuali
+  vecchie regole `ProxyPass`, non valide in `.htaccess` su cPanel condiviso.
 - Per rollback: rilanciare il workflow da un commit precedente o ripristinare
   un backup cPanel.
 

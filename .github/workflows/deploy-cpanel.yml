@@ -90,6 +90,14 @@ jobs:
       - name: Build static export
         run: npm run build:static
 
+      - name: Prepare cPanel static artifact
+        run: |
+          set -euo pipefail
+
+          # Overwrite legacy cPanel/Node proxy rules that break static hosting.
+          # The static Next.js export does not require ProxyPass or runtime rewrites.
+          : > out/.htaccess
+
       - name: Inspect static artifact
         run: |
           set -euo pipefail
