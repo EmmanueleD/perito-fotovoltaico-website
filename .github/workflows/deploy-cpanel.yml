@@ -17,13 +17,14 @@ jobs:
 
     env:
       TINA_BRANCH: main
-      NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
+      NEXT_PUBLIC_TINA_CLIENT_ID: ${{ vars.NEXT_PUBLIC_TINA_CLIENT_ID || secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
+      NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL || secrets.NEXT_PUBLIC_SITE_URL }}
       TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
-      CPANEL_PROTOCOL: ${{ secrets.CPANEL_PROTOCOL }}
-      CPANEL_HOST: ${{ secrets.CPANEL_HOST }}
-      CPANEL_PORT: ${{ secrets.CPANEL_PORT }}
-      CPANEL_USER: ${{ secrets.CPANEL_USER }}
-      CPANEL_TARGET_DIR: ${{ secrets.CPANEL_TARGET_DIR }}
+      CPANEL_PROTOCOL: ${{ vars.CPANEL_PROTOCOL || secrets.CPANEL_PROTOCOL }}
+      CPANEL_HOST: ${{ vars.CPANEL_HOST || secrets.CPANEL_HOST }}
+      CPANEL_PORT: ${{ vars.CPANEL_PORT || secrets.CPANEL_PORT }}
+      CPANEL_USER: ${{ vars.CPANEL_USER || secrets.CPANEL_USER }}
+      CPANEL_TARGET_DIR: ${{ vars.CPANEL_TARGET_DIR || secrets.CPANEL_TARGET_DIR }}
       CPANEL_PASSWORD: ${{ secrets.CPANEL_PASSWORD }}
       CPANEL_SSH_PRIVATE_KEY: ${{ secrets.CPANEL_SSH_PRIVATE_KEY }}
 

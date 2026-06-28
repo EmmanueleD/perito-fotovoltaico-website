@@ -59,8 +59,9 @@ TinaCMS edit → commit su GitHub main → GitHub Actions → npm ci → export 
 Configurare in GitHub → Settings → Secrets and variables → Actions:
 
 ```text
+Variables non sensibili:
+
 NEXT_PUBLIC_TINA_CLIENT_ID
-TINA_TOKEN
 TINA_BRANCH=main
 NEXT_PUBLIC_SITE_URL=https://studiofulminis.it
 
@@ -69,6 +70,10 @@ CPANEL_HOST=hosting03.cesena.net
 CPANEL_PORT=22
 CPANEL_USER=studiofulminis
 CPANEL_TARGET_DIR=/home/studiofulminis/public_html
+
+Secrets sensibili:
+
+TINA_TOKEN
 CPANEL_SSH_PRIVATE_KEY
 ```
 
