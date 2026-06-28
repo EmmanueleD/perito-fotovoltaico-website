@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev --turbopack\"",
-    "build": "node scripts/with-env.mjs tinacms build && next build",
-    "build:static": "node scripts/with-env.mjs tinacms build && next build",
+    "build": "node scripts/with-env.mjs tinacms build && node scripts/with-env.mjs next build",
+    "build:static": "node scripts/with-env.mjs tinacms build --skip-cloud-checks --skip-indexing --skip-search-index && node scripts/with-env.mjs next build",
     "start": "next start",
     "lint": "next lint"
   },
