@@ -145,5 +145,5 @@ jobs:
           lftp \
             -u "${CPANEL_USER},${CPANEL_PASSWORD}" \
             -p "${CPANEL_PORT:-21}" \
-            -e "set ftp:ssl-force ${ftp_ssl}; set ftp:ssl-protect-data ${ftp_ssl}; mirror --reverse --verbose --only-newer --exclude-glob .DS_Store --exclude-glob __MACOSX out ${CPANEL_TARGET_DIR}; bye" \
+            -e "set ftp:ssl-force ${ftp_ssl}; set ftp:ssl-protect-data ${ftp_ssl}; put -O ${CPANEL_TARGET_DIR} out/.htaccess; mirror --reverse --verbose --only-newer --exclude-glob .DS_Store --exclude-glob __MACOSX out ${CPANEL_TARGET_DIR}; bye" \
             "${CPANEL_HOST}"
