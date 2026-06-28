@@ -3,15 +3,9 @@
 import { motion } from 'framer-motion'
 import { MapPin, Phone, Mail, Clock, Car } from 'lucide-react'
 import { tinaField } from "tinacms/dist/react"
+import type { HomepageContatti } from "@/lib/content-types"
 
-interface ContattiData {
-  title: string
-  address: string
-  phone?: string
-  email?: string
-  description?: string
-  [key: string]: any
-}
+type ContattiData = HomepageContatti
 
 export default function Contatti({ data }: { data?: ContattiData }) {
   const contactInfo = [

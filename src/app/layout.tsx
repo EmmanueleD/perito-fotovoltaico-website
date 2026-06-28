@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Header from "@/components/Header";
 import CookieBanner from "@/components/CookieBanner";
@@ -14,7 +14,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"]
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://perito-fotovoltaico-website.vercel.app";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title:
     "Danilo Fulminis - Perito Industriale Specialista in Sistemi Fotovoltaici",
   description:
@@ -70,9 +73,13 @@ export const metadata: Metadata = {
       "Progettazione e installazione di sistemi fotovoltaici in Lombardia. Energia sostenibile accessibile a tutti.",
     images: ["/images/og-image.jpg"]
   },
-  viewport: "width=device-width, initial-scale=1",
-  themeColor: "#1e40af",
   manifest: "/site.webmanifest"
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#1e40af"
 };
 
 export default function RootLayout({

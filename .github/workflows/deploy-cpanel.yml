@@ -1,0 +1,140 @@
+name: Deploy static site to cPanel
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: cpanel-production-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build and deploy static export
+    runs-on: ubuntu-latest
+
+    env:
+      TINA_BRANCH: main
+      NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
+      TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
+      CPANEL_PROTOCOL: ${{ secrets.CPANEL_PROTOCOL }}
+      CPANEL_HOST: ${{ secrets.CPANEL_HOST }}
+      CPANEL_PORT: ${{ secrets.CPANEL_PORT }}
+      CPANEL_USER: ${{ secrets.CPANEL_USER }}
+      CPANEL_TARGET_DIR: ${{ secrets.CPANEL_TARGET_DIR }}
+      CPANEL_PASSWORD: ${{ secrets.CPANEL_PASSWORD }}
+      CPANEL_SSH_PRIVATE_KEY: ${{ secrets.CPANEL_SSH_PRIVATE_KEY }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Validate deployment configuration
+        run: |
+          set -euo pipefail
+
+          required_vars=(
+            NEXT_PUBLIC_TINA_CLIENT_ID
+            TINA_TOKEN
+            CPANEL_PROTOCOL
+            CPANEL_HOST
+            CPANEL_USER
+            CPANEL_TARGET_DIR
+          )
+
+          for var_name in "${required_vars[@]}"; do
+            if [ -z "${!var_name:-}" ]; then
+              echo "::error::Missing required GitHub secret: ${var_name}"
+              exit 1
+            fi
+          done
+
+          case "${CPANEL_PROTOCOL}" in
+            sftp|ftp|ftps) ;;
+            *)
+              echo "::error::CPANEL_PROTOCOL must be one of: sftp, ftp, ftps"
+              exit 1
+              ;;
+          esac
+
+          case "${CPANEL_TARGET_DIR}" in
+            */public_html|*/public_html/*) ;;
+            *)
+              echo "::error::CPANEL_TARGET_DIR must point inside a public_html directory"
+              exit 1
+              ;;
+          esac
+
+          if [ "${CPANEL_PROTOCOL}" = "sftp" ] && [ -z "${CPANEL_SSH_PRIVATE_KEY:-}" ]; then
+            echo "::error::CPANEL_SSH_PRIVATE_KEY is required when CPANEL_PROTOCOL=sftp"
+            exit 1
+          fi
+
+          if [ "${CPANEL_PROTOCOL}" != "sftp" ] && [ -z "${CPANEL_PASSWORD:-}" ]; then
+            echo "::error::CPANEL_PASSWORD is required when CPANEL_PROTOCOL is ftp or ftps"
+            exit 1
+          fi
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static export
+        run: npm run build:static
+
+      - name: Inspect static artifact
+        run: |
+          set -euo pipefail
+
+          test -d out
+          test -f out/index.html
+          test -d out/admin
+
+          if find out -name ".DS_Store" -o -name "__MACOSX" | grep -q .; then
+            echo "::error::Static artifact contains macOS metadata"
+            exit 1
+          fi
+
+          echo "Static export contains $(find out -type f | wc -l | tr -d ' ') files."
+
+      - name: Install transfer client
+        if: env.CPANEL_PROTOCOL == 'sftp' || env.CPANEL_PROTOCOL == 'ftp' || env.CPANEL_PROTOCOL == 'ftps'
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Deploy over SFTP
+        if: env.CPANEL_PROTOCOL == 'sftp'
+        run: |
+          set -euo pipefail
+
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s\n' "${CPANEL_SSH_PRIVATE_KEY}" > ~/.ssh/cpanel_deploy_key
+          chmod 600 ~/.ssh/cpanel_deploy_key
+          ssh-keyscan -p "${CPANEL_PORT:-22}" "${CPANEL_HOST}" >> ~/.ssh/known_hosts
+
+          lftp \
+            -e "set sftp:connect-program 'ssh -a -x -i ~/.ssh/cpanel_deploy_key -p ${CPANEL_PORT:-22}'; mirror --reverse --verbose --only-newer --exclude-glob .DS_Store --exclude-glob __MACOSX out ${CPANEL_TARGET_DIR}; bye" \
+            "sftp://${CPANEL_USER}@${CPANEL_HOST}"
+
+      - name: Deploy over FTP/FTPS
+        if: env.CPANEL_PROTOCOL == 'ftp' || env.CPANEL_PROTOCOL == 'ftps'
+        run: |
+          set -euo pipefail
+
+          ftp_ssl="false"
+          if [ "${CPANEL_PROTOCOL}" = "ftps" ]; then
+            ftp_ssl="true"
+          fi
+
+          lftp \
+            -u "${CPANEL_USER},${CPANEL_PASSWORD}" \
+            -p "${CPANEL_PORT:-21}" \
+            -e "set ftp:ssl-force ${ftp_ssl}; set ftp:ssl-protect-data ${ftp_ssl}; mirror --reverse --verbose --only-newer --exclude-glob .DS_Store --exclude-glob __MACOSX out ${CPANEL_TARGET_DIR}; bye" \
+            "${CPANEL_HOST}"

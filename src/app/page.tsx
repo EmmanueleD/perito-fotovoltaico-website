@@ -6,16 +6,13 @@ import Servizi from "@/components/Servizi";
 // import Gallery from '@/components/Gallery' // TEMPORANEAMENTE COMMENTATO - Sezione "I miei progetti"
 import Contatti from "@/components/Contatti";
 import Footer from "@/components/Footer";
-import { client } from "../../tina/__generated__/client";
+import { getHomepageContent } from "@/lib/content";
 
 export default async function Home() {
-  // Fetch data from TinaCMS
   try {
-    const { data, variables, query } = await client.queries.homepage({
-      relativePath: "home.json",
-    });
+    const homepage = await getHomepageContent();
 
-    return <TinaProvider data={data} variables={variables} query={query} />;
+    return <TinaProvider data={{ homepage }} />;
   } catch (error) {
     // Fallback to static content if TinaCMS is not available
     console.error("TinaCMS error:", error);

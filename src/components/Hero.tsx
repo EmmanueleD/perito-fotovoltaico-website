@@ -6,18 +6,11 @@ import { tinaField } from "tinacms/dist/react";
 import { Sun } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import type { HomepageHero, RichTextValue } from "@/lib/content-types";
 
-interface HeroData {
-  name: string;
-  surname: string;
-  title: string;
-  subtitle: string;
-  description: any;
-  ctaPrimary: string;
-  ctaSecondary: string;
-  scrollText: string;
-  heroIcon: string;
-  [key: string]: any;
+interface HeroData extends HomepageHero {
+  description?: RichTextValue;
+  scrollText?: string;
 }
 
 interface HeroProps {
@@ -88,11 +81,11 @@ export default function Hero({ data }: HeroProps) {
           >
             {data?.description ? (
               <TinaMarkdown
-                content={data.description}
+                content={data.description as never}
                 components={{
-                  p: (props: any) => (
+                  p: (props?: { children: React.ReactNode }) => (
                     <p className="text-lg md:text-xl text-gray-700 mb-4">
-                      {props.children}
+                      {props?.children}
                     </p>
                   ),
                 }}

@@ -42,6 +42,54 @@ Configurare su Vercel Dashboard → Settings → Environment Variables
 3. Ottieni credenziali e configurale su Vercel
 4. Redeploy
 
+## Deploy statico su cPanel
+
+Il deploy cPanel deve essere automatizzato da GitHub Actions: TinaCMS salva le
+modifiche su GitHub, la pipeline genera un export statico fresco e carica solo
+il contenuto di `out/` nella document root cPanel.
+
+Flusso previsto:
+
+```text
+TinaCMS edit → commit su GitHub main → GitHub Actions → npm ci → export statico → upload cPanel
+```
+
+### Secrets GitHub richiesti
+
+Configurare in GitHub → Settings → Secrets and variables → Actions:
+
+```text
+NEXT_PUBLIC_TINA_CLIENT_ID
+TINA_TOKEN
+TINA_BRANCH=main
+NEXT_PUBLIC_SITE_URL=https://studiofulminis.it
+
+CPANEL_PROTOCOL=sftp
+CPANEL_HOST=hosting03.cesena.net
+CPANEL_PORT=22
+CPANEL_USER=studiofulminis
+CPANEL_TARGET_DIR=/home/studiofulminis/public_html
+CPANEL_SSH_PRIVATE_KEY
+```
+
+Non creare `GITHUB_BRANCH` nei Secrets/Variables di GitHub Actions: il prefisso
+`GITHUB_` è riservato. Per TinaCMS in CI usare `TINA_BRANCH=main`; `GITHUB_BRANCH`
+può restare solo in `.env.local` per compatibilità con setup locali già esistenti.
+
+Se l'hosting non supporta SFTP/SSH, usare `CPANEL_PROTOCOL=ftp` o `ftps`,
+`CPANEL_PORT=21` e configurare `CPANEL_PASSWORD` al posto della chiave SSH.
+
+### Guardrail importanti
+
+- Non caricare manualmente la cartella locale `out/`: è ignorata da Git e può
+  essere stale.
+- Il workflow deve caricare solo i file generati dentro `out/`.
+- `CPANEL_TARGET_DIR` deve puntare alla document root reale, attesa:
+  `/home/studiofulminis/public_html`.
+- Non caricare cartelle `__MACOSX`, file `.DS_Store` o sorgenti del progetto.
+- Per rollback: rilanciare il workflow da un commit precedente o ripristinare
+  un backup cPanel.
+
 ## Struttura Progetto
 
 - `/src/app` - Pages e layout Next.js

@@ -2,30 +2,19 @@
 
 import { motion } from 'framer-motion'
 import { Sun, Settings, BarChart3, Shield, Wrench, Calculator, Lightbulb, Check } from 'lucide-react'
-import { useRouter } from 'next/router'
 import { tinaField } from "tinacms/dist/react"
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
+import type { ComponentType, SVGProps } from 'react'
+import type { HomepageService, HomepageServizi } from "@/lib/content-types"
 
-interface Service {
-  title: string
-  description: string
-  icon?: string
-  features?: string[]
-}
-
-interface ServiziData {
-  title: string
-  subtitle?: string
-  description?: any
-  services?: Service[]
-  [key: string]: any
-}
+type Service = HomepageService
+type ServiziData = HomepageServizi
 
 interface ServiziProps {
   data?: ServiziData
 }
 
-const iconComponents: { [key: string]: any } = {
+const iconComponents: Record<string, ComponentType<SVGProps<SVGSVGElement>>> = {
   Sun,
   Settings,
   BarChart3,
@@ -68,7 +57,7 @@ export default function Servizi({ data }: ServiziProps) {
           )}
           {data?.description && (
             <div className="prose max-w-3xl mx-auto mt-6" data-tina-field={tinaField(data, "description")}>
-              <TinaMarkdown content={data.description} />
+              <TinaMarkdown content={data.description as never} />
             </div>
           )}
         </motion.div>

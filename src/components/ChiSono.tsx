@@ -4,21 +4,10 @@ import { motion } from 'framer-motion'
 import { Award, Users, Lightbulb, Shield, Star, Check, BarChart } from 'lucide-react'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import { tinaField } from "tinacms/dist/react"
-import Image from 'next/image'
+import type { HomepageChiSono, HomepageFeature } from "@/lib/content-types"
 
-interface Feature {
-  title: string
-  description: string
-  icon?: any // Make icon optional since it's only used in default features
-}
-
-interface ChiSonoData {
-  title: string
-  description: any
-  image?: string | null
-  features?: Feature[]
-  [key: string]: any
-}
+type Feature = HomepageFeature
+type ChiSonoData = HomepageChiSono
 
 interface ChiSonoProps {
   data?: ChiSonoData
@@ -73,7 +62,7 @@ export default function ChiSono({ data }: ChiSonoProps) {
             <div className="text-lg text-gray-700 mb-8 leading-relaxed text-center max-w-3xl mx-auto" data-tina-field={tinaField(data, "description")}>
               <div className="prose max-w-none">
                 {data?.description ? (
-                  <TinaMarkdown content={data.description} />
+                  <TinaMarkdown content={data.description as never} />
                 ) : (
                   <p>
                     Con oltre <span className="font-semibold text-blue-800">15 anni di esperienza</span> nel settore energetico,

@@ -8,11 +8,14 @@ import Servizi from "@/components/Servizi";
 // import Gallery from '@/components/Gallery' // TEMPORANEAMENTE COMMENTATO - Sezione "I miei progetti"
 import Contatti from "@/components/Contatti";
 import Footer from "@/components/Footer";
+import type { HomepageContent } from "@/lib/content-types";
 
 interface TinaProviderProps {
-  data: any;
-  variables: any;
-  query: string;
+  data: {
+    homepage?: HomepageContent;
+  };
+  variables?: Record<string, unknown>;
+  query?: string;
 }
 
 export default function TinaProvider({
@@ -20,15 +23,37 @@ export default function TinaProvider({
   variables,
   query,
 }: TinaProviderProps) {
-  // Use the useTina hook to enable visual editing
-  const { data: tinaData } = useTina({
-    query,
-    variables,
-    data,
-  });
+  const shouldUseTina = Boolean(query && variables);
+  if (!shouldUseTina) {
+    return <HomeSections content={data.homepage} />;
+  }
 
-  const content = tinaData.homepage;
+  return (
+    <TinaEditableHome
+      data={data}
+      variables={variables ?? {}}
+      query={query ?? ""}
+    />
+  );
+}
 
+function TinaEditableHome({
+  data,
+  variables,
+  query
+}: Required<TinaProviderProps>) {
+  const { data: tinaData } = useTina(
+    {
+      query,
+      variables,
+      data
+    }
+  );
+
+  return <HomeSections content={tinaData.homepage} />;
+}
+
+function HomeSections({ content }: { content?: HomepageContent }) {
   return (
     <main className="min-h-screen">
       <Hero data={content?.hero || undefined} />
