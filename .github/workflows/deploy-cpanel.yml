@@ -67,9 +67,9 @@ jobs:
           esac
 
           case "${CPANEL_TARGET_DIR}" in
-            */public_html|*/public_html/*) ;;
+            /|*/public_html|*/public_html/*) ;;
             *)
-              echo "::error::CPANEL_TARGET_DIR must point inside a public_html directory"
+              echo "::error::CPANEL_TARGET_DIR must be / for a chrooted FTP account or point inside a public_html directory"
               exit 1
               ;;
           esac

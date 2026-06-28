@@ -83,6 +83,8 @@ può restare solo in `.env.local` per compatibilità con setup locali già esist
 
 Se l'hosting non supporta SFTP/SSH, usare `CPANEL_PROTOCOL=ftp` o `ftps`,
 `CPANEL_PORT=21` e configurare `CPANEL_PASSWORD` al posto della chiave SSH.
+Se si usa un account FTP confinato direttamente nella document root del sito,
+configurare `CPANEL_TARGET_DIR=/`.
 
 ### Guardrail importanti
 
